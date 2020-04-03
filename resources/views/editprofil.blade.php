@@ -96,101 +96,61 @@
     <div class="container wow fadeInUp">
       <div class="row">
         <div class="col-md-12">
-          <h3 class="section-title">Profil Pengguna</h3>
-          <!-- <div class="section-title-divider"></div> -->
-          <!-- <p class="section-description"></p> -->
-          </br>
-          <img src="assets_user/img/team-4.jpg" class="img-circle" alt=""></img>
-          </br>
+            <h3 class="section-title">Edit Profil</h3>
+        </br>
+            <img src="assets_user/img/team-4.jpg" class="img-circle" alt=""></img>
+        </br>
 
-      <div class="col-md-9 col-md-push-2">       
-        <table class="table table-hover">
-          <tbody>
-            @if( Auth::user()->status == "" )
-            <tr>
-              <td>Nama Lengkap</td>
-              <td>{{ Auth::user()->name }}</td>
-            </tr>
-            <tr>
-              <td>Fakultas</td>
-              <td>{{ Auth::user()->fakultas }}</td>
-            </tr>
-            <tr>
-              <td>Prodi</td>
-              <td>{{ Auth::user()->prodi }}</td>
-            </tr>
-            <tr>
-              <td>NIM</td>
-              <td>{{ Auth::user()->kode }}</td>
-            </tr>
-            <tr>
-              <td>Alamat</td>
-              <td>{{ Auth::user()->alamat }}</td>
-            </tr>
-            <tr>
-              <td>No. Telp</td>
-              <td>{{ Auth::user()->telepon }}</td>
-            </tr>
-            <tr>
-              <td>Email</td>
-              <td>{{ Auth::user()->email }}</td>
-            </tr>
-            @endif
-            @if( Auth::user()->status == "1" )
-            <tr>
-              <td>Nama Lengkap</td>
-              <td>{{ Auth::user()->name }}</td>
-            </tr>
-            <tr>
-              <td>Fakultas</td>
-              <td>{{ Auth::user()->fakultas }}</td>
-            </tr>
-            <tr>
-              <td>Prodi</td>
-              <td>{{ Auth::user()->prodi }}</td>
-            </tr>
-            <tr>
-              <td>NAK</td>
-              <td>{{ Auth::user()->kode }}</td>
-            </tr>
-            <tr>
-              <td>Status</td>
-              <td>{{ Auth::user()->status }}</td>
-            </tr>
-            <tr>
-              <td>Jabatan</td>
-              <td>{{ Auth::user()->jabatan }}</td>
-            </tr>
-            <tr>
-              <td>Alamat</td>
-              <td>{{ Auth::user()->alamat }}</td>
-            </tr>
-            <tr>
-              <td>No. Telp</td>
-              <td>{{ Auth::user()->telepon }}</td>
-            </tr>
-            <tr>
-              <td>Email</td>
-              <td>{{ Auth::user()->email }}</td>
-            </tr>
-          @endif
-          </tbody>
-        </table>
+      <div class="col-md-6 col-md-push-3">  
+      @foreach($users as $users)     
+        <form action="/users/update" method="post">
+        {{ csrf_field() }}
+        <input type="hidden" name="id" value="{{ $users->id }}"> <br/>
+            <div class="form-group">
+                <label for="name">Nama:</label>
+                <input type="text" class="form-control" id="email" placeholder="Nama Anda" name="name" required="required" value="{{ $users->name }}">
+            </div>
+            <div class="form-group">
+                <label for="fakultas">Fakultas:</label>
+                <input type="text" class="form-control" id="fakultas" placeholder="Fakultas" name="fakultas" required="required" value="{{ $users->fakultas }}">
+            </div>
+            <div class="form-group">
+                <label for="prodi">Prodi:</label>
+                <input type="text" class="form-control" id="prodi" placeholder="Prodi" name="prodi" required="required" value="{{ $users->prodi }}">
+            </div>
+            <div class="form-group">
+                <label for="kode">NIU:</label>
+                <input type="text" class="form-control" id="kode" placeholder="NUI 6 Digit" name="kode" required="required" value="{{ $users->kode }}">
+            </div>
+            <div class="form-group">
+                <label for="jabatan">Jabatan:</label>
+                <input type="text" class="form-control" id="jabatan" placeholder="Jabatan" name="jabatan" required="required" value="{{ $users->jabatan }}">
+            </div>
+            <div class="form-group">
+                <label for="alamat">Alamat:</label>
+                <input type="textarea" class="form-control" id="alamat" placeholder="Alamat" name="alamat" required="required" value="{{ $users->alamat }}">
+            </div>
+            <div class="form-group">
+                <label for="telepon">No. Telepon:</label>
+                <input type="text" class="form-control" id="telepon" placeholder="No. Telepon" name="telepon" required="required" value="{{ $users->telepon }}">
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="text" class="form-control" id="email" placeholder="Email UGM Aktif" name="email" required="required" value="{{ $users->email }}">
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" id="password" placeholder="Password" name="password" equired="required" value="{{ $users->password }}">
+            </div>
+
+            <div class="text-center">
+                    <button type="submit" class="btn btn--pill btn--green" value="Simpan Data"><button>
+            </div>
+        </form>
+        @endforeach
       </div>
 
       </div>
-      </div>
-              <div class="text-center">
-                <button type="button" class="btn btn--pill btn--green">
-                  <a href="editprofil/{{ Auth::user()->id }}">Edit Data</a>
-                </button>
-              </div>
-              
-
-            </form>
-          </div>
-        </div>
-
       </div>
     </div>
   </section>

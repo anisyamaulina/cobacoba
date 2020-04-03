@@ -103,7 +103,7 @@
         </div>
      
   @foreach($peminjaman as $p)
-	<form action="/peminjaman/update" method="post">
+	<form action="/update" method="post">
 		{{ csrf_field() }}
 		
     <div class="form-group">

@@ -37,14 +37,13 @@
 
   <!-- Main Stylesheet File -->
   <link href="assets_user/css/style.css" rel="stylesheet">
-  <link href="assets_user_register/css/main.css" rel="stylesheet" media="all">
 
 </head>
 
 <body>
   <div id="preloader"></div>
 
-  <!--==========================
+ <!--==========================
   Header Section
   ============================-->
   <header id="header">
@@ -57,9 +56,9 @@
       <nav id="nav-menu-container">
         <ul class="nav-menu">
           <li><a href="{{Route('home')}}">Home</a></li>
-          <li class="menu-active"><a href="{{Route('profil')}}">Profil</a></li>
+          <li><a href="{{Route('profil')}}">Profil</a></li>
           <li><a href="{{Route('fasilitas')}}">Fasilitas</a></li>
-          <li class="nav-item dropdown">
+          <li class="menu-active">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Peminjaman<span class="caret"></span></a>
 
               <div class="dropdown-menu dropdown">
@@ -89,140 +88,79 @@
   </header>
   <!-- #header -->
 
-  <!--==========================
-  Form Peminjaman
+<!--==========================
+  Daftar Peminjaman
   ============================-->
-  <section id="contact">
+  <section id="portfolio">
     <div class="container wow fadeInUp">
       <div class="row">
         <div class="col-md-12">
-          <h3 class="section-title">Profil Pengguna</h3>
-          <!-- <div class="section-title-divider"></div> -->
-          <!-- <p class="section-description"></p> -->
-          </br>
-          <img src="assets_user/img/team-4.jpg" class="img-circle" alt=""></img>
-          </br>
-
-      <div class="col-md-9 col-md-push-2">       
-        <table class="table table-hover">
-          <tbody>
-            @if( Auth::user()->status == "" )
-            <tr>
-              <td>Nama Lengkap</td>
-              <td>{{ Auth::user()->name }}</td>
-            </tr>
-            <tr>
-              <td>Fakultas</td>
-              <td>{{ Auth::user()->fakultas }}</td>
-            </tr>
-            <tr>
-              <td>Prodi</td>
-              <td>{{ Auth::user()->prodi }}</td>
-            </tr>
-            <tr>
-              <td>NIM</td>
-              <td>{{ Auth::user()->kode }}</td>
-            </tr>
-            <tr>
-              <td>Alamat</td>
-              <td>{{ Auth::user()->alamat }}</td>
-            </tr>
-            <tr>
-              <td>No. Telp</td>
-              <td>{{ Auth::user()->telepon }}</td>
-            </tr>
-            <tr>
-              <td>Email</td>
-              <td>{{ Auth::user()->email }}</td>
-            </tr>
-            @endif
-            @if( Auth::user()->status == "1" )
-            <tr>
-              <td>Nama Lengkap</td>
-              <td>{{ Auth::user()->name }}</td>
-            </tr>
-            <tr>
-              <td>Fakultas</td>
-              <td>{{ Auth::user()->fakultas }}</td>
-            </tr>
-            <tr>
-              <td>Prodi</td>
-              <td>{{ Auth::user()->prodi }}</td>
-            </tr>
-            <tr>
-              <td>NAK</td>
-              <td>{{ Auth::user()->kode }}</td>
-            </tr>
-            <tr>
-              <td>Status</td>
-              <td>{{ Auth::user()->status }}</td>
-            </tr>
-            <tr>
-              <td>Jabatan</td>
-              <td>{{ Auth::user()->jabatan }}</td>
-            </tr>
-            <tr>
-              <td>Alamat</td>
-              <td>{{ Auth::user()->alamat }}</td>
-            </tr>
-            <tr>
-              <td>No. Telp</td>
-              <td>{{ Auth::user()->telepon }}</td>
-            </tr>
-            <tr>
-              <td>Email</td>
-              <td>{{ Auth::user()->email }}</td>
-            </tr>
-          @endif
-          </tbody>
-        </table>
-      </div>
-
-      </div>
-      </div>
-              <div class="text-center">
-                <button type="button" class="btn btn--pill btn--green">
-                  <a href="editprofil/{{ Auth::user()->id }}">Edit Data</a>
-                </button>
-              </div>
-              
-
-            </form>
-          </div>
+          <h3 class="section-title">Daftar Peminjaman</h3>
+          <!-- <p class="section-description">Berikut adalah daftar peminjaman</p> -->
         </div>
-
       </div>
+
+      <div class="row">
+	  	<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>Acara</th>
+					<th>Tanggal</th>
+					<th>Waktu Mulai</th>
+					<th>Waktu Selesai</th>
+				</tr>
+			</thead>
+			<tbody>
+			@if ($post->count() > 0)
+				@foreach ($post as $post)
+					<tr>
+						<td>{{ $post->acara }}</td>
+						<td>{{ $post->tanggal }}</td>
+						<td>{{ $post->waktu_mulai }}</td>
+						<td>{{ $post->waktu_selesai }}</td>
+					</tr>
+				@endforeach
+			@else
+				<tr>
+					<td>Tidak ada data</td>
+				</tr>
+			@endif
+			</tbody>
+		</table>
+      </div>
+
     </div>
   </section>
+
 
   <!--==========================
   Footer
 ============================-->
-  <footer id="footer">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          
-          <div class="copyright">
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        
+        <div class="copyright">
 
-            <a href="http://kopma.ugm.ac.id">
-              <img src="assets_user/img/footer-kopma.png" alt="Universitas Gadjah Mada"></a>
-      
-              <p>Bulaksumur H-7&amp;H-8, Yogyakarta, 55281<br>
-              <i class="fa fa-phone"></i> (0274) 565774, 519943<br>
-              <i class="fa fa-fax"></i> (0274) 566171<br>
-              <i class="fa fa-envelope"></i> info@kopma-ugm.net, brand@kopma-ugm.net</p>
+          <a href="http://kopma.ugm.ac.id">
+            <img src="assets_user/img/footer-kopma.png" alt="Universitas Gadjah Mada"></a>
+    
+            <p>Bulaksumur H-7&amp;H-8, Yogyakarta, 55281<br>
+            <i class="fa fa-phone"></i> (0274) 565774, 519943<br>
+            <i class="fa fa-fax"></i> (0274) 566171<br>
+            <i class="fa fa-envelope"></i> info@kopma-ugm.net, brand@kopma-ugm.net</p>
 
-            &copy; <strong>UNIVERSITAS GADJAH MADA</strong>
-          </div>
-          <div class="credits">
-
-          </div>
+          &copy; <strong>UNIVERSITAS GADJAH MADA</strong>
+        </div>
+        <div class="credits">
+        
         </div>
       </div>
     </div>
-  </footer>
-  <!-- #footer -->
+  </div>
+</footer>
+<!-- #footer -->
 
   <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 
@@ -242,4 +180,6 @@
 
 
 </body>
-  </html>
+
+</html>
+

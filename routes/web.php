@@ -17,8 +17,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Auth::routes(['verify' => true]);
-
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/register', 'Auth\RegisterController@index')->name('register');
@@ -35,13 +33,9 @@ Route::get('selengkapnya', function () {
 	return view('selengkapnya');
 })->name('selengkapnya');
 
-Route::get('profil', function () {
-	return view('profil');
-})->name('profil');
-
 Route::get('/profil', 'UsersController@index')->name('profil');
 
-Route::get('/editprofil/{id}','UsersController@edit')->name('edit');
+Route::get('/editprofil/{id}','UsersController@edit')->name('editprofil');
 
 Route::post('/users/update','UsersController@update');
 
@@ -49,9 +43,13 @@ Route::get('fasilitas', function () {
 	return view('fasilitas');
 })->name('fasilitas');
 
-Route::get('peminjaman', function () {
-	return view('peminjaman');
-})->name('peminjaman');
+Route::get('/addpeminjaman', 'PostController@add')->name('add');
+
+Route::post('/save', 'PostController@save')->name('save');
+
+Route::get('/daftarpeminjaman', 'PostController@index')->name('list');
+
+Route::get('/aksi', 'PostController@aksi')->name('aksi');
 
 Route::get('aksi', function () {
 	return view('aksi');
@@ -64,9 +62,7 @@ Route::get('agenda', function () {
 Route::get('events', 'EventController@index')->name('events');
 
 
-Route::get('/post/add', 'PostController@add')->name('post.add');
 
-Route::post('/post/save', 'PostController@save')->name('post.save');
 
 
 
@@ -75,11 +71,3 @@ Route::post('/post/save', 'PostController@save')->name('post.save');
 //route CRUD
 // Route::get('/users/tambah','UsersController@tambah');
 // Route::post('/users/store','UsersController@store');
-
-
-
-Route::get('action', function () {
-	return view('action');
-})->name('action');
-
-Route::get('dropdownn','DependentDropdownController@searchYourCity');

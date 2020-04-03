@@ -63,7 +63,7 @@
           <li><a href="{{Route('events')}}">Agenda</a></li>
           <li class="nav-item dropdown">
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                {{ Auth::user()->name }} <span class="caret"></span></a>
+                {{ Auth::user()->name}} <span class="caret"></span></a>
 
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -100,18 +100,16 @@
             <tr>
                 <th>Nama</th>
                 <th>Acara</th>
-                <th>Scan KTM</th>
                 <th>Tanggal</th>
                 <th>Waktu Mulai</th>
                 <th>Waktu Selesai</th>
                 <th>Aksi</th>
             </tr>
 
-            @foreach($peminjaman as $p)
+            @foreach($post as $p)
             <tr>
               <td>{{ Auth::user()->name }}</td>
               <td>{{ $p->acara }}</td>
-              <td>{{ $p->ktm }}</td>
               <td>{{ $p->tanggal }}</td>
               <td>{{ $p->waktu_mulai }}</td>
               <td>{{ $p->waktu_selesai }}</td>

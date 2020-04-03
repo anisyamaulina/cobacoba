@@ -58,7 +58,15 @@
           <li><a href="{{Route('home')}}">Home</a></li>
           <li><a href="{{Route('profil')}}">Profil</a></li>
           <li class="menu-active"><a href="{{Route('fasilitas')}}">Fasilitas</a></li>
-          <li><a href="{{Route('peminjaman')}}">Peminjaman</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Peminjaman<span class="caret"></span></a>
+
+              <div class="dropdown-menu dropdown">
+                <a class="dropdown-item" href="{{ route('list') }}">Daftar Peminjaman</a></br>
+                <a class="dropdown-item" href="{{ route('add') }}">Buat Peminjaman</a></br>
+                <a class="dropdown-item" href="{{ route('aksi') }}">Data Peminjaman</a>
+              </div>
+              </li>
           <li><a href="{{Route('events')}}">Agenda</a></li>
           <li class="nav-item dropdown">
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -88,8 +96,7 @@
       <div class="row">
         <div class="col-md-12">
           <h3 class="section-title">Ruang Sidang</h3>
-          <!-- <div class="section-title-divider"></div> -->
-          <p class="section-description">Berikut adalah beberapa potret ruang sidang</p>
+          <!-- <p class="section-description">Berikut adalah beberapa potret ruang sidang</p> -->
         </div>
       </div>
 
@@ -149,8 +156,7 @@
       <div class="row">
         <div class="col-md-12">
           <h3 class="section-title">Ruang Anggota</h3>
-          <!-- <div class="section-title-divider"></div> -->
-          <p class="section-description">Berikut adalah beberapa potret ruang anggota</p>
+          <!-- <p class="section-description">Berikut adalah beberapa potret ruang anggota</p> -->
         </div>
       </div>
 
@@ -211,8 +217,7 @@
       <div class="row">
         <div class="col-md-12">
           <h3 class="section-title">Ruang Perpustakaan</h3>
-          <!-- <div class="section-title-divider"></div> -->
-          <p class="section-description">Berikut adalah beberapa potret ruang perpustakaan</p>
+          <!-- <p class="section-description">Berikut adalah beberapa potret ruang perpustakaan</p> -->
         </div>
       </div>
 
@@ -273,8 +278,7 @@
       <div class="row">
         <div class="col-md-12">
           <h3 class="section-title">Barang</h3>
-          <!-- <div class="section-title-divider"></div> -->
-          <p class="section-description">Berikut adalah daftar barang Kopma UGM yang dapat dipinjam</p>
+          <!-- <p class="section-description">Berikut adalah daftar barang Kopma UGM yang dapat dipinjam</p> -->
         </div>
       </div>
 

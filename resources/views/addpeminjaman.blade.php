@@ -44,7 +44,7 @@
 <body>
   <div id="preloader"></div>
 
-  <!--==========================
+ <!--==========================
   Header Section
   ============================-->
   <header id="header">
@@ -57,9 +57,17 @@
       <nav id="nav-menu-container">
         <ul class="nav-menu">
           <li><a href="{{Route('home')}}">Home</a></li>
-          <li class="menu-active"><a href="{{Route('profil')}}">Profil</a></li>
+          <li><a href="{{Route('profil')}}">Profil</a></li>
           <li><a href="{{Route('fasilitas')}}">Fasilitas</a></li>
-          <li><a href="{{Route('peminjaman')}}">Peminjaman</a></li>
+          <li class="menu-active">
+            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Peminjaman<span class="caret"></span></a>
+
+              <div class="dropdown-menu dropdown">
+                <a class="dropdown-item" href="{{ route('list') }}">Daftar Peminjaman</a></br>
+                <a class="dropdown-item" href="{{ route('add') }}">Buat Peminjaman</a></br>
+                <a class="dropdown-item" href="{{ route('aksi') }}">Data Peminjaman</a>
+              </div>
+              </li>
           <li><a href="{{Route('events')}}">Agenda</a></li>
           <li class="nav-item dropdown">
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -81,93 +89,78 @@
   </header>
   <!-- #header -->
 
-  <!--==========================
-  Form Peminjaman
+<!--==========================
+  Daftar Peminjaman
   ============================-->
-  <section id="contact">
+  <section id="portfolio">
     <div class="container wow fadeInUp">
       <div class="row">
         <div class="col-md-12">
-          <h3 class="section-title">Profil Pengguna</h3>
-          <!-- <div class="section-title-divider"></div> -->
-          <!-- <p class="section-description"></p> -->
-      
-          <img src="assets_user/img/team-4.jpg" class="img-circle" alt=""></img>
-          </br>
-
-          <div class="col-md-6 col-md-push-3"> 
-        <div class="form-group">
-              <form action="proses.php" method="post" enctype="multipart/form-data">
-                <p>Pilih foto<input type='file' name='foto' /></p>
-              </form>
+          <h3 class="section-title">Form Peminjaman</h3>
+          <!-- <p class="section-description">Berikut adalah daftar peminjaman</p> -->
         </div>
-
-	
-	<br/>
-	<br/>
-
-	@foreach($users as $p)
-	<form action="/users/update" method="post">
-		{{ csrf_field() }}
-		<input type="hidden" name="id" value="{{ $p->id }}"> <br/>
-		Nama <input type="text" required="required" name="name" value="{{ $p->name }}"> <br/>
-		Jabatan <input type="text" required="required" name="jabatan" value="{{ $p->jabatan }}"> <br/>
-        Fakultas <input type="text" name="fakultas" required="required" value="{{ $p->fakultas }}"> <br/>
-		Prodi <input type="text" name="prodi" required="required" value="{{ $p->prodi }}"><br/>
-        NIM <input type="text" name="kode" required="required" value="{{ $p->kode }}"> <br/>
-		Alamat <input type="text" name="alamat" required="required" value="{{ $p->alamat }}"> <br/>
-		Telepon <input type="text" name="telepon" required="required" value="{{ $p->telepon }}"> <br/>
-		Email <input type="text" name="email" required="required" value="{{ $p->email }}"><br/>
-		Password <input type="password" name="password" required="required" value="{{ $p->password }}"><br/>
-		<input type="submit" value="Simpan Data">
-	</form>
-	@endforeach
-		
-	</div>
       </div>
-              <!-- <div class="text-center">
-                <button type="submit" class="btn btn--pill btn--green">
-                <a href="/profil/{{ Auth::user()->id }}">Simpan Data</a>
-                </button>
-              </div> -->
-              
 
-            </form>
-          </div>
-        </div>
+      <div class="row">
+      <div class="col-md-6 col-md-push-3">  
+      <form role="form" method="POST" action="{{ route('save') }}" enctype="multipart/form-data">
+					    {{ csrf_field() }}
+							<div class="form-group">
+					    		<label>Acara</label>
+					    		<input type="text" name="acara" class="form-control" required="" value="{{ old('acara') }}">
+					    	</div>
+							<div class="form-group">
+					    		<label>Tanggal</label>
+					    		<input type="date" name="tanggal" class="form-control" required="" value="{{ old('tanggal') }}">
+					    	</div>
+							<div class="form-group">
+					    		<label>Waktu Mulai</label>
+					    		<input type="time" name="waktu_mulai" class="form-control" required="" value="{{ old('waktu_mulai') }}">
+					    	</div>
+							<div class="form-group">
+					    		<label>Waktu Selesai</label>
+					    		<input type="time" name="waktu_selesai" class="form-control" required="" value="{{ old('waktu_selesai') }}">
+					    	</div>
 
+              <div class="text-center">
+                <button type="submit" class="btn btn--pill btn--green">Pinjam</button>
+                </div>
+			</form>
       </div>
+      </div>
+
     </div>
   </section>
+
 
   <!--==========================
   Footer
 ============================-->
 <footer id="footer">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          
-          <div class="copyright">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        
+        <div class="copyright">
 
-            <a href="http://kopma.ugm.ac.id">
-              <img src="assets_user/img/footer-kopma.png" alt="Universitas Gadjah Mada"></a>
-      
-              <p>Bulaksumur H-7&amp;H-8, Yogyakarta, 55281<br>
-              <i class="fa fa-phone"></i> (0274) 565774, 519943<br>
-              <i class="fa fa-fax"></i> (0274) 566171<br>
-              <i class="fa fa-envelope"></i> info@kopma-ugm.net, brand@kopma-ugm.net</p>
+          <a href="http://kopma.ugm.ac.id">
+            <img src="assets_user/img/footer-kopma.png" alt="Universitas Gadjah Mada"></a>
+    
+            <p>Bulaksumur H-7&amp;H-8, Yogyakarta, 55281<br>
+            <i class="fa fa-phone"></i> (0274) 565774, 519943<br>
+            <i class="fa fa-fax"></i> (0274) 566171<br>
+            <i class="fa fa-envelope"></i> info@kopma-ugm.net, brand@kopma-ugm.net</p>
 
-            &copy; <strong>UNIVERSITAS GADJAH MADA</strong>
-          </div>
-          <div class="credits">
-
-          </div>
+          &copy; <strong>UNIVERSITAS GADJAH MADA</strong>
+        </div>
+        <div class="credits">
+        
         </div>
       </div>
     </div>
-  </footer>
-  <!-- #footer -->
+  </div>
+</footer>
+<!-- #footer -->
 
   <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 
@@ -187,4 +180,5 @@
 
 
 </body>
-  </html>
+
+</html>

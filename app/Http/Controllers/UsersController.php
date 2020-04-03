@@ -19,8 +19,8 @@ class UsersController extends Controller
     {
 	// mengambil data user berdasarkan id yang dipilih
 	$users = DB::table('users')->where('id',$id)->get();
-	// passing data user yang didapat ke view edit.blade.php
-	return view('edit',['users' => $users]);
+	// passing data user yang didapat ke view editprofil.blade.php
+	return view('editprofil',['users' => $users]);
  
     }
 
