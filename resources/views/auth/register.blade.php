@@ -24,6 +24,9 @@
 
     <!-- Main CSS-->
     <link href="assets_user_register/css/main.css" rel="stylesheet" media="all">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
 </head>
 
 <body>
@@ -33,7 +36,9 @@
                 <div class="card-heading"></div>
                 <div class="card-body">
                     <h2 class="title">REGISTRASI AKUN</h2>
-                    <form method="POST">
+
+                    <form method="POST" action="{{ route('register') }}">
+                        @csrf
                     
                         <div class="input-group">
                             <input id="name" type="text" class="input--style-3{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required placeholder="Nama Lengkap">
@@ -46,28 +51,28 @@
         
                         <div class="input-group">
                             <div class="rs-select2 js-select-simple select--no-search">
-                                <select name="fakultas" id="fakultas">
+                                <select name="nama_fakultas" id="fakultas">
                                     <option disabled="" selected="selected" for="fir" id="fakultas" for="fakultas">Fakultas</option>
                                     @foreach( $fakultas as $key => $value)
-                                    <option value="{{ $key }}">{{ $value }}</option>
+                                    <option value="{{ $key }}">{{ $value-> name }}</option>
                                     @endforeach
                                 </select>
                                 <div class="select-dropdown"></div>
                             </div>
                         </div>
-
-                        <div class="input-group">
+                                      
+                       <div class="input-group">
+                        <div name="fakultas" id="fakultas"></div>
                             <div class="rs-select2 js-select-simple select--no-search">
-                                <select name="gender">
-                                    <option disabled="disabled" selected="selected">Jurusan</option>
-                                    <option>Manajemen Kebijakan Publik</option>
-                                    <option>Sastra Arab</option>
-                                    <option>Ilmu Komunikasi</option>
+                                <select id="prodi-select" name="prodi-select">
+                                    <option disabled="" selected="selected" for="prodi">Prodi</option>
+                                    <option>Prodi</option>
                                 </select>
                                 <div class="select-dropdown"></div>
                             </div>
+                        <div name="prodi" id="prodi"></div>
                         </div>
-
+                       
                         <div class="input-group">
                             <input id="kode" type="text" class="input--style-3{{ $errors->has('kode') ? ' is-invalid' : '' }}" name="kode" value="{{ old('kode') }}" required placeholder="NIU 6 Digit">
                             @if ($errors->has('kode'))
@@ -96,7 +101,7 @@
                         </div>
 
                         <div class="input-group">
-                            <input id="email" type="text" class="input--style-3{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required placeholder="Email">
+                            <input id="email" type="text" class="input--style-3{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="Email" required>
                             @if ($errors->has('email'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('email') }}</strong>
@@ -150,7 +155,38 @@
     <!-- Main JS-->
     <script src="assets_user_register/js/global.js"></script>
 
-</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+    <script>
+        $(document).ready(function(){
+            $('#fakultas-select').change(function(){
+                var fakultas_id = $(this).val();
+                var fakultas_name = $("select[name='fakultas-select'] option:selected").text();
+                if(fakultas_id){
+                    $.ajax({
+                        url: '/register/' + fakultas_id,
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function(data){
+                            $('#prodi').empty();
+                            $('#prodi')
+                                .append("<input type='text' style='display:none' name='fakultas' id='fakultas' value='"+fakultas_name"'>");
+                                console.log(data);
+                                $('#prodi-select').empty();
+                                $.each(data, function(key, value){
+                                    $('#prodi-select')
+                                    .append('<option value="'+key+'">'+ value + '</option>');
+                                    });
+                        }
+                    });
+                } else {
+                    $('#prodi-select').empty();
+                    }
+            });
+        });
+
+    </script>
+
+
+</body>
 
 </html>
 <!-- end document-->

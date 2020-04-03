@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Fakultas extends Model
+class Ruang extends Model
 {
     protected $primaryKey = 'id';
-    protected $table = 'fakultas';
-    protected $fillable = ['name'];
+    protected $table = 'ruang';
+    protected $fillable = ['nama_ruang'];
 }

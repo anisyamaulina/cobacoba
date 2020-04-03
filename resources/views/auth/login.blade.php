@@ -57,10 +57,14 @@
                         <div class="p-t-10">
                             <button class="btn btn--pill btn--green" type="submit">{{ __('Masuk') }}</button>
                             @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Lupa kata sandi') }}
-                                    </a>
-                                @endif
+                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                                    {{ __('Lupa kata sandi') }}
+                                </a>
+                            @endif
+                        </div>
+
+                        <div class="p-t-10">
+                            <a class="btn btn-link" href="{{ route('register') }}" type="submit">{{ __('Pendaftaran Akun') }}</a> 
                         </div>
                         
                     </form>

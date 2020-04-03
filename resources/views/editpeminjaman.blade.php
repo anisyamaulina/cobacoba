@@ -97,50 +97,34 @@
 
           <div class="col-md-6 col-md-push-3"> 
         <div class="form-group">
-              <form action="proses.php" method="post" enctype="multipart/form-data">
+              <form action="peminjaman.php" method="post" enctype="multipart/form-data">
                 <p>Pilih foto<input type='file' name='foto' /></p>
               </form>
         </div>
      
-  @foreach($users as $p)
-	<form action="/users/update" method="post">
+  @foreach($peminjaman as $p)
+	<form action="/peminjaman/update" method="post">
 		{{ csrf_field() }}
 		
     <div class="form-group">
-      <label for="name">Nama Lengkap:</label>
-      <input type="name" class="form-control" id="{id}" placeholder="Nama lengkap" name="name" value="{{ Auth::user()->name }}">
+      <label for="ktm">KTM:</label>
+      <input type="text" class="form-control" id="{id}" placeholder="KTM" name="ktm" value="{{ $peminjaman->ktm }}">
     </div>
     <div class="form-group">
-      <label for="jabatan">Jabatan:</label>
-      <input type="text" class="form-control" id="{id}" placeholder="Jabatan" name="jabatan" value="{{ Auth::user()->jabatan }}">
+      <label for="agenda">Agenda:</label>
+      <input type="text" class="form-control" id="{id}" placeholder="Agenda" name="agenda" value="{{ $peminjaman->agenda }}">
     </div>
     <div class="form-group">
-      <label for="fakultas">Fakultas:</label>
-      <input type="text" class="form-control" id="{id}" placeholder="Fakultas" name="fakultas" value="{{ Auth::user()->fakultas }}">
+      <label for="tanggal">Tanggal:</label>
+      <input type="date" class="form-control" id="{id}" placeholder="Tanggal" name="tanggal" value="{{ $peminjaman->tanggal }}">
     </div>
     <div class="form-group">
-      <label for="jurusan">Jurusan:</label>
-      <input type="text" class="form-control" id="{id}" placeholder="Jurusan" name="jurusan" value="{{ Auth::user()->jurusan }}">
+      <label for="waktu_mulai">Waktu Mulai:</label>
+      <input type="time" class="form-control" id="{id}" placeholder="Waktu Mulai" name="waktu_mulai" value="{{ $peminjaman->waktu_mulai }}">
     </div>
     <div class="form-group">
-      <label for="nim">NIM:</label>
-      <input type="text" class="form-control" id="{id}" placeholder="NIM" name="nim" value="{{ Auth::user()->nim }}" >
-    </div>
-    <div class="form-group">
-      <label for="alamat">Alamat:</label>
-      <input type="textarea" class="form-control" id="{id}" placeholder="Alamat" name="alamat" value="{{ Auth::user()->alamat }}"> 
-    </div>
-    <div class="form-group">
-      <label for="telepon">No. Telp:</label>
-      <input type="text" class="form-control" id="{id}" placeholder="Telepon" name="telepon" value="{{ Auth::user()->telepon }}">
-    </div>
-    <div class="form-group">
-      <label for="email">Email:</label>
-      <input type="email" class="form-control" id="{id}" placeholder="Email" name="email" value="{{ Auth::user()->email }}">
-    </div>
-    <div class="form-group">
-      <label for="pwd">Password:</label>
-      <input type="password" class="form-control" id="{id}" placeholder="Password" name="password" value="{{ Auth::user()->password }}">
+      <label for="waktu_selesai">Waktu Selesai:</label>
+      <input type="time" class="form-control" id="{id}" placeholder="Waktu Selesai" name="waktu_selesai" value="{{ $peminjaman->waktu_selesai }}">
     </div>
     
   </form>
@@ -151,7 +135,7 @@
       </div>
               <div class="text-center">
                 <button type="submit" class="btn btn--pill btn--green">
-                <a href="/profil/{{ Auth::user()->id }}">Simpan Data</a>
+                <a href="/aksi/{{ $peminjaman->id }}">Simpan Data</a>
                 </button>
               </div>
               

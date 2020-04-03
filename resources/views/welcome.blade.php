@@ -57,7 +57,7 @@
                     <h1>Selamat Datang di Website Peminjaman Ruang dan Barang<br/>Koperasi Mahasiswa UGM</h1>
                     </br>
                    
-                    @if (Route::has('loginAnggota'))
+                    @if (Route::has('login'))
                         <div>
                         @auth
                             @else

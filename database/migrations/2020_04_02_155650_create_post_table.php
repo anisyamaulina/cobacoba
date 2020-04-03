@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFakultasTable extends Migration
+class CreatePostTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class CreateFakultasTable extends Migration
      */
     public function up()
     {
-        Schema::create('fakultas', function (Blueprint $table) {
+        Schema::create('post', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('acara');
+            $table->string('tanggal');
+            $table->string('waktu_mulai');
+            $table->string('waktu_selesai');
             $table->timestamps();
         });
     }
@@ -27,6 +30,6 @@ class CreateFakultasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fakultas');
+        Schema::dropIfExists('post');
     }
 }

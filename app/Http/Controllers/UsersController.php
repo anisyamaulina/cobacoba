@@ -4,15 +4,22 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\User;
 
 
 class UsersController extends Controller
 {
+    public function index()
+    {
+        $users = User::all();
+        return view('profil', ['profil' => $users]);
+    }
+
     public function edit($id)
     {
-	// mengambil data pegawai berdasarkan id yang dipilih
+	// mengambil data user berdasarkan id yang dipilih
 	$users = DB::table('users')->where('id',$id)->get();
-	// passing data pegawai yang didapat ke view edit.blade.php
+	// passing data user yang didapat ke view edit.blade.php
 	return view('edit',['users' => $users]);
  
     }
@@ -24,8 +31,9 @@ class UsersController extends Controller
 		'name' => $request->name,
         'jabatan' => $request->jabatan,
         'fakultas' => $request->fakultas,
-        'jurusan' => $request->jurusan,
+        'prodi' => $request->prodi,
         'kode' => $request->kode,
+        'status' => $request->status,
         'alamat' => $request->alamat,
         'telepon' => $request->telepon,
         'email' => $request->email,

@@ -50,10 +50,13 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
+            'foto' => ['required', 'string', 'max:255'],
             'name' => ['required', 'string', 'max:255'],
             'fakultas' => ['required', 'string', 'max:255'],
-            'jurusan' => ['required', 'string', 'max:255'],
-            'nim' => ['required', 'string', 'max:255'],
+            'prodi' => ['required', 'string', 'max:255'],
+            'kode' => ['required', 'string', 'max:255'],
+            'status' => ['required', 'string', 'max:255'],
+            'jabatan' => ['required', 'string', 'max:255'],
             'alamat' => ['required', 'string', 'max:255'],
             'telepon' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -72,10 +75,13 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
+            'foto' => $data['foto'],
             'name' => $data['name'],
             'fakultas' => $data['fakultas'],
-            'jurusan' => $data['jurusan'],
-            'nim' => $data['nim'],
+            'prodi' => $data['prodi'],
+            'kode' => $data['kode'],
+            'status' => $data['status'],
+            'jabatan' => $data['jabatan'],
             'alamat' => $data['alamat'],
             'telepon' => $data['telepon'],
             'email' => $data['email'],
@@ -85,7 +91,15 @@ class RegisterController extends Controller
 
     public function index()
     {
-        $fakultas = Fakultas::all()->get();
+        $fakultas = Fakultas::get();
         return view('auth.register', ['fakultas' => $fakultas]);
     }
+
+    public function getProdi($id)
+    {
+        $prodi = Prodi::where('fakultas_id', '=', $id)->pluck("prodi", "id");
+        return json_encode($prodi);
+    }
+
+    
 }

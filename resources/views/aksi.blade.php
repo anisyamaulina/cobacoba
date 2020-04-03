@@ -88,49 +88,47 @@
     <div class="container wow fadeInUp">
       <div class="row">
         <div class="col-md-12">
-          <h3 class="section-title">Profil Pengguna</h3>
-          <!-- <div class="section-title-divider"></div> -->
-          <!-- <p class="section-description"></p> -->
-      
-          <img src="assets_user/img/team-4.jpg" class="img-circle" alt=""></img>
+          <h3 class="section-title">Riwayat Peminjaman</h3>
+          <p class="section-description">Berikut peminjaman yang telah Anda submit</p>
+    
           </br>
 
-          <div class="col-md-6 col-md-push-3"> 
-        <div class="form-group">
-              <form action="proses.php" method="post" enctype="multipart/form-data">
-                <p>Pilih foto<input type='file' name='foto' /></p>
-              </form>
-        </div>
+      <div class="col-md-6 col-md-push-3">       
+        <table class="table table-striped">
+          <tbody>
 
-	
-	<br/>
-	<br/>
+            <tr>
+                <th>Nama</th>
+                <th>Acara</th>
+                <th>Scan KTM</th>
+                <th>Tanggal</th>
+                <th>Waktu Mulai</th>
+                <th>Waktu Selesai</th>
+                <th>Aksi</th>
+            </tr>
 
-	@foreach($users as $p)
-	<form action="/users/update" method="post">
-		{{ csrf_field() }}
-		<input type="hidden" name="id" value="{{ $p->id }}"> <br/>
-		Nama <input type="text" required="required" name="name" value="{{ $p->name }}"> <br/>
-		Jabatan <input type="text" required="required" name="jabatan" value="{{ $p->jabatan }}"> <br/>
-        Fakultas <input type="text" name="fakultas" required="required" value="{{ $p->fakultas }}"> <br/>
-		Prodi <input type="text" name="prodi" required="required" value="{{ $p->prodi }}"><br/>
-        NIM <input type="text" name="kode" required="required" value="{{ $p->kode }}"> <br/>
-		Alamat <input type="text" name="alamat" required="required" value="{{ $p->alamat }}"> <br/>
-		Telepon <input type="text" name="telepon" required="required" value="{{ $p->telepon }}"> <br/>
-		Email <input type="text" name="email" required="required" value="{{ $p->email }}"><br/>
-		Password <input type="password" name="password" required="required" value="{{ $p->password }}"><br/>
-		<input type="submit" value="Simpan Data">
-	</form>
-	@endforeach
-		
-	</div>
+            @foreach($peminjaman as $p)
+            <tr>
+              <td>{{ Auth::user()->name }}</td>
+              <td>{{ $p->acara }}</td>
+              <td>{{ $p->ktm }}</td>
+              <td>{{ $p->tanggal }}</td>
+              <td>{{ $p->waktu_mulai }}</td>
+              <td>{{ $p->waktu_selesai }}</td>
+              <td>
+                  
+                  <button type="button" class="btn-a btn--pill btn--red">
+                    <a href="/editpeminjaman/{{ $peminjaman->id }}">Edit</a>
+                  </button></td>
+            </tr>
+            @endforeach
+      
+          </tbody>
+        </table>
       </div>
-              <!-- <div class="text-center">
-                <button type="submit" class="btn btn--pill btn--green">
-                <a href="/profil/{{ Auth::user()->id }}">Simpan Data</a>
-                </button>
-              </div> -->
-              
+
+      </div>
+      </div>            
 
             </form>
           </div>
@@ -143,7 +141,7 @@
   <!--==========================
   Footer
 ============================-->
-<footer id="footer">
+  <footer id="footer">
     <div class="container">
       <div class="row">
         <div class="col-md-12">

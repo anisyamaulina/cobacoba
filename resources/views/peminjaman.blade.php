@@ -96,14 +96,12 @@
         <div class="col-md-6 col-md-push-3">
           <div class="form">
             <div id="errormessage"></div>
-            <form action="" method="post" role="form" class="contactForm">
+            <form method="POST" action="{{ route('peminjaman') }}" role="form" class="contactForm">
+            @csrf
+            @if( Auth::user()->status == "1" )
 
               <div class="form-group">
                 <input type="text" name="name" class="form-control" id="{id}" placeholder="Nama Lengkap" data-rule="minlen:4" data-msg="Masukkan Nama Lengkap" value="{{ Auth::user()->name }}"/>
-                <div class="validation"></div>
-              </div>
-              <div class="form-group">
-                <input type="text" name="jabatan" class="form-control" id="{id}" placeholder="Jabatan" data-rule="minlen:4" data-msg="Jabatan Anda" value="{{ Auth::user()->jabatan }}"/>
                 <div class="validation"></div>
               </div>
               <div class="form-group">
@@ -111,11 +109,19 @@
                 <div class="validation"></div>
               </div>
               <div class="form-group">
-                <input type="text" name="jurusan" class="form-control" id="{id}" placeholder="Jurusan" data-rule="minlen:4" data-msg="Jurusan Anda" value="{{ Auth::user()->jurusan }}"/>
+                <input type="text" name="prodi" class="form-control" id="{id}" placeholder="Prodi" data-rule="minlen:4" data-msg="Prodi Anda" value="{{ Auth::user()->prodi }}"/>
                 <div class="validation"></div>
               </div>
               <div class="form-group">
-                <input type="text" name="nim" class="form-control" id="{id}" placeholder="NIM" data-rule="minlen:4" data-msg="NIM Anda" value="{{ Auth::user()->nim }}"/>
+                <input type="text" name="nim" class="form-control" id="{id}" placeholder="NAK" data-rule="minlen:4" data-msg="NIM Anda" value="{{ Auth::user()->kode }}"/>
+                <div class="validation"></div>
+              </div>
+              <div class="form-group">
+                <input type="text" name="status" class="form-control" id="{id}" placeholder="Status" data-rule="minlen:4" data-msg="Status Anda" value="{{ Auth::user()->status }}"/>
+                <div class="validation"></div>
+              </div>
+              <div class="form-group">
+                <input type="text" name="jabatan" class="form-control" id="{id}" placeholder="Jabatan" data-rule="minlen:4" data-msg="Jabatan Anda" value="{{ Auth::user()->jabatan }}"/>
                 <div class="validation"></div>
               </div>
               <div class="form-group">
@@ -135,32 +141,14 @@
                 <input type="email" name="email" class="form-control" id="{id}" placeholder="Email" data-rule="minlen:4" data-msg="Email Anda" value="{{ Auth::user()->email }}"/>
                 <div class="validation"></div>
               </div>
-    
-              <div class="form-group">
-                <select class="form-control" id="status">
-                  <option>Ruang</option>
-                  <option>Ruang Sidang</option>
-                  <option>Ruang Perpustakaan</option>
-                  <option>Ruang Anggota</option>
-                </select>
-                <div class="validation"></div>
-              </div>
-
               <div class="form-group">
                 <input type="text" class="form-control" name="agenda" id="{id}" placeholder="Agenda" data-rule="minlen:4" data-msg="Acara yang akan diselenggarakan" />
                 <div class="validation"></div>
               </div>
-
-              <div class="form-group">
-                <input type="textarea" class="form-control" name="deskripsi" id="{id}" placeholder="Deskripsi" data-rule="minlen:4" data-msg="Deskripsi Acara" />
-                <div class="validation"></div>
-              </div>
-              
               <div class="form-group">
                 <input type="date" class="form-control" name="tanggal" id="{id}" placeholder="Tanggal Pinjam" data-rule="minlen:4" data-msg="Pilih tanggal peminjaman" />
                 <div class="validation"></div>
               </div>
-
               <div class="form-group">
                 <div class="col-xs-5">
                   <label for="ex1">Waktu mulai<input type="time" class="form-control" id="jam" name="waktu_mulai"></label>
@@ -170,14 +158,16 @@
                 </div>
                 <div class="validation"></div>
               </div>
-
-
-
-      </div>
-    </div>
-  </section>
-
-<!--==========================
+              <div class="form-group">
+                <select class="form-control" name="ruang" id="ruang">
+                  <option disabled="" selected="selected" for="fir" id="ruang" for="ruang">Ruang</option>
+                      @foreach( $ruang as $key => $value)
+                  <option value="{{ $key }}">{{ $value-> nama_ruang }}</option>
+                      @endforeach
+                </select>
+                <div class="validation"></div>
+              </div>
+              <!--==========================
   Barang Section
   ============================-->
   <section id="portfolio">
@@ -304,27 +294,6 @@
           </div>
         </div>
 
-        <div class="text-center">
-                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">
-                  Submit
-                </button>
-              </div>
-
-              <!-- Modal -->
-              <div class="modal fade" id="myModal" role="dialog">
-                <div class="modal-dialog modal-sm">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal">&times;</button>
-                      <h4 class="modal-title">Data berhasil disimpan!</h4>
-                    </div>
-                    <div class="modal-body">
-                      <p>Admin akan mengonfirmasi data peminjaman Anda melalui email.</p>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                  </div>
             </form>
           </div>
         </div>
@@ -332,6 +301,105 @@
       </div>
     </div>
   </section>
+              @endif
+              @if( Auth::user()->status == "" )
+
+              <div class="form-group">
+                <input type="text" name="name" class="form-control" id="{id}" placeholder="Nama Lengkap" data-rule="minlen:4" data-msg="Masukkan Nama Lengkap" value="{{ Auth::user()->name }}"/>
+                <div class="validation"></div>
+              </div>
+              <div class="form-group">
+                <input type="text" name="fakultas" class="form-control" id="{id}" placeholder="Fakultas" data-rule="minlen:4" data-msg="Fakultas Anda" value="{{ Auth::user()->fakultas }}"/>
+                <div class="validation"></div>
+              </div>
+              <div class="form-group">
+                <input type="text" name="prodi" class="form-control" id="{id}" placeholder="Prodi" data-rule="minlen:4" data-msg="Prodi Anda" value="{{ Auth::user()->prodi }}"/>
+                <div class="validation"></div>
+              </div>
+              <div class="form-group">
+                <input type="text" name="nim" class="form-control" id="{id}" placeholder="NIU" data-rule="minlen:4" data-msg="NIM Anda" value="{{ Auth::user()->kode }}"/>
+                <div class="validation"></div>
+              </div>
+              <div class="form-group">
+              <form action="peminjaman.php" method="post" enctype="multipart/form-data">
+                <p>Upload Scan KTM<input type='file' name='foto' /></p>
+              </form>
+              </div>
+              <div class="form-group">
+                <input type="textarea" name="alamat" class="form-control" id="{id}" placeholder="Alamat" data-rule="minlen:4" data-msg="Alamat Anda" value="{{ Auth::user()->alamat }}"/>
+                <div class="validation"></div>
+              </div>
+              <div class="form-group">
+                <input type="text" name="telepon" class="form-control" id="{id}" placeholder="Telepon" data-rule="minlen:4" data-msg="Telepon Anda" value="{{ Auth::user()->telepon }}"/>
+                <div class="validation"></div>
+              </div>
+              <div class="form-group">
+                <input type="email" name="email" class="form-control" id="{id}" placeholder="Email" data-rule="minlen:4" data-msg="Email Anda" value="{{ Auth::user()->email }}"/>
+                <div class="validation"></div>
+              </div>
+
+              <div class="form-group">
+                <input id="acara" type="text" class="form-control{{ $errors->has('acara') ? ' is-invalid' : '' }}" name="acara" value="{{ old('acara') }}" required placeholder="Acara">
+                  @if ($errors->has('acara'))
+                    <span class="invalid-feedback" role="alert">
+                      <strong>{{ $errors->first('acara') }}</strong>
+                    </span>
+                  @endif
+              </div>
+
+              <div class="form-group">
+                <input id="tanggal" type="date" class="form-control{{ $errors->has('tanggal') ? ' is-invalid' : '' }}" name="tanggal" value="{{ old('tanggal') }}" required placeholder="Tanggal">
+                  @if ($errors->has('tanggal'))
+                    <span class="invalid-feedback" role="alert">
+                      <strong>{{ $errors->first('tanggal') }}</strong>
+                    </span>
+                  @endif
+              </div>
+
+              <div class="form-group">
+                <div class="col-xs-6">
+                  <input id="waktu_mulai" type="time" class="form-control{{ $errors->has('waktu_mulai') ? ' is-invalid' : '' }}" name="waktu_mulai" value="{{ old('waktu_mulai') }}" required placeholder="waktu_mulai">
+                    @if ($errors->has('waktu_mulai'))
+                      <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('waktu_mulai') }}</strong>
+                      </span>
+                    @endif
+                </div>
+                <div class="col-xs-6">
+                  <input id="waktu_selesai" type="time" class="form-control{{ $errors->has('waktu_selesai') ? ' is-invalid' : '' }}" name="waktu_selesai" value="{{ old('waktu_selesai') }}" required placeholder="waktu_selesai">
+                    @if ($errors->has('waktu_selesai'))
+                      <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('waktu_selesai') }}</strong>
+                      </span>
+                    @endif
+                </div>
+              </div>
+
+              @endif
+
+              
+          </br>
+          </br>
+
+              <div class="text-center">
+                <button class="btn btn--pill btn--green" type="submit">{{ __('Simpan') }}</button>
+              </div>
+
+          </form>
+
+          
+          <!-- <div class="text-center">
+            <button type="submit" class="btn btn--pill btn--green">
+              <a href="/aksi">{{ __('Simpan') }}</a>
+            </button>
+          </div> -->
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
 
   <!--==========================
   Footer

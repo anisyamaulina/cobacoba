@@ -53,30 +53,24 @@
         <table class="table table-striped">
     
         <tr>
-            <th>Nama</th>
-            <th>Jabatan</th>
-            <th>Fakultas</th>
-            <th>Jurusan</th>
-            <th>NIM</th>
-            <th>Alamat</th>
-            <th>Telepon</th>
-            <th>Email</th>
+            <th>Acara</th>
+            <th>KTM</th>
+            <th>Tanggal</th>
+            <th>Waktu Mulai</th>
+            <th>Waktu Selesai</th>
         </tr>
 
-        @foreach($users as $p)
+        @foreach($peminjaman as $p)
         <tr>
-            <td>{{ $p->name}}</td>
-            <td>{{ $p->jabatan}}</td>
-            <td>{{ $p->fakultas}}</td>
-            <td>{{ $p->jurusan}}</td>
-            <td>{{ $p->kode}}</td>
-            <td>{{ $p->alamat}}</td>
-            <td>{{ $p->telepon}}</td>
-            <td>{{ $p->email}}</td>
+            <td>{{ $p->acara}}</td>
+            <td>{{ $p->ktm}}</td>
+            <td>{{ $p->tanggal}}</td>
+            <td>{{ $p->waktu_mulai}}</td>
+            <td>{{ $p->waktu_selesai}}</td>
 
-            <td><a href="/users/edit/{{ $p->id }}">Edit</a>
+            <td><a href="/peminjaman/edit/{{ $p->id }}">Edit</a>
 				|
-				<a href="/users/hapus/{{ $p->id }}">Hapus</a>
+				<a href="/peminjaman/hapus/{{ $p->id }}">Hapus</a>
 
         </tr>
         @endforeach

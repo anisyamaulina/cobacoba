@@ -98,21 +98,18 @@
       <div class="col-md-6 col-md-push-3">       
         <table class="table table-striped">
           <tbody>
+            @if( Auth::user()->status == "" )
             <tr>
               <td>Nama Lengkap</td>
               <td>{{ Auth::user()->name }}</td>
-            </tr>
-            <tr>
-              <td>Jabatan</td>
-              <td>{{ Auth::user()->jabatan }}</td>
             </tr>
             <tr>
               <td>Fakultas</td>
               <td>{{ Auth::user()->fakultas }}</td>
             </tr>
             <tr>
-              <td>Jurusan</td>
-              <td>{{ Auth::user()->jurusan }}</td>
+              <td>Prodi</td>
+              <td>{{ Auth::user()->prodi }}</td>
             </tr>
             <tr>
               <td>NIM</td>
@@ -130,6 +127,45 @@
               <td>Email</td>
               <td>{{ Auth::user()->email }}</td>
             </tr>
+            @endif
+            @if( Auth::user()->status == "1" )
+            <tr>
+              <td>Nama Lengkap</td>
+              <td>{{ Auth::user()->name }}</td>
+            </tr>
+            <tr>
+              <td>Fakultas</td>
+              <td>{{ Auth::user()->fakultas }}</td>
+            </tr>
+            <tr>
+              <td>Prodi</td>
+              <td>{{ Auth::user()->prodi }}</td>
+            </tr>
+            <tr>
+              <td>NAK</td>
+              <td>{{ Auth::user()->kode }}</td>
+            </tr>
+            <tr>
+              <td>Status</td>
+              <td>{{ Auth::user()->status }}</td>
+            </tr>
+            <tr>
+              <td>Jabatan</td>
+              <td>{{ Auth::user()->jabatan }}</td>
+            </tr>
+            <tr>
+              <td>Alamat</td>
+              <td>{{ Auth::user()->alamat }}</td>
+            </tr>
+            <tr>
+              <td>No. Telp</td>
+              <td>{{ Auth::user()->telepon }}</td>
+            </tr>
+            <tr>
+              <td>Email</td>
+              <td>{{ Auth::user()->email }}</td>
+            </tr>
+          @endif
           </tbody>
         </table>
       </div>
