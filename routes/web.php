@@ -43,17 +43,23 @@ Route::get('fasilitas', function () {
 	return view('fasilitas');
 })->name('fasilitas');
 
-Route::get('/addpeminjaman', 'PostController@add')->name('add');
+Route::get('/addpeminjaman', 'PeminjamanController@add')->name('add');
 
-Route::post('/save', 'PostController@save')->name('save');
+Route::post('/save', 'PeminjamanController@save')->name('save');
 
-Route::get('/daftarpeminjaman', 'PostController@index')->name('list');
+Route::get('/datapeminjaman', 'PeminjamanController@index')->name('list');
 
-Route::get('/aksi', 'PostController@aksi')->name('aksi');
+Route::get('/editpeminjaman/{id}','PeminjamanController@edit')->name('editpeminjaman');
 
-Route::get('aksi', function () {
-	return view('aksi');
-})->name('aksi');
+Route::post('/peminjaman/update','PeminjamanController@update')->name('update');
+
+Route::get('/datapeminjaman/hapus/{id}', 'PeminjamanController@delete');
+
+Route::post('/submit_peminjaman', 'PeminjamanController@submit_peminjaman')->name('submit_peminjaman');
+
+Route::get('data', function () {
+	return view('datapeminjaman');
+})->name('data');
 
 Route::get('agenda', function () {
 	return view('agenda');

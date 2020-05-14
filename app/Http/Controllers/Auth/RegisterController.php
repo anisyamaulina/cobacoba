@@ -97,7 +97,7 @@ class RegisterController extends Controller
 
     public function getProdi($id)
     {
-        $prodi = Prodi::where('fakultas_id', '=', $id)->pluck("prodi", "id");
+        $prodi = Prodi::where('fakultas_id', '=', $id)->pluck("nama_prodi", "id");
         return json_encode($prodi);
     }
 

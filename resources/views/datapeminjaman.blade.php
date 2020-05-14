@@ -44,7 +44,7 @@
 <body>
   <div id="preloader"></div>
 
-  <!--==========================
+ <!--==========================
   Header Section
   ============================-->
   <header id="header">
@@ -57,13 +57,21 @@
       <nav id="nav-menu-container">
         <ul class="nav-menu">
           <li><a href="{{Route('home')}}">Home</a></li>
-          <li class="menu-active"><a href="{{Route('profil')}}">Profil</a></li>
+          <li><a href="{{Route('profil')}}">Profil</a></li>
           <li><a href="{{Route('fasilitas')}}">Fasilitas</a></li>
-          <li><a href="{{Route('peminjaman')}}">Peminjaman</a></li>
+          <li class="menu-active">
+            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Peminjaman<span class="caret"></span></a>
+
+              <div class="dropdown-menu dropdown">
+                <a class="dropdown-item" href="{{ route('list') }}">Daftar Peminjaman</a></br>
+                <a class="dropdown-item" href="{{ route('add') }}">Buat Peminjaman</a></br>
+                <a class="dropdown-item" href="{{ route('data') }}">Data Peminjaman</a>
+              </div>
+              </li>
           <li><a href="{{Route('events')}}">Agenda</a></li>
           <li class="nav-item dropdown">
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                {{ Auth::user()->name}} <span class="caret"></span></a>
+                {{ Auth::user()->name }} <span class="caret"></span></a>
 
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -81,89 +89,88 @@
   </header>
   <!-- #header -->
 
-  <!--==========================
-  Form Peminjaman
+<!--==========================
+  Daftar Peminjaman
   ============================-->
-  <section id="contact">
+  <section id="portfolio">
     <div class="container wow fadeInUp">
       <div class="row">
         <div class="col-md-12">
-          <h3 class="section-title">Riwayat Peminjaman</h3>
-          <p class="section-description">Berikut peminjaman yang telah Anda submit</p>
-    
-          </br>
-
-      <div class="col-md-6 col-md-push-3">       
-        <table class="table table-striped">
-          <tbody>
-
-            <tr>
-                <th>Nama</th>
-                <th>Acara</th>
-                <th>Tanggal</th>
-                <th>Waktu Mulai</th>
-                <th>Waktu Selesai</th>
-                <th>Aksi</th>
-            </tr>
-
-            @foreach($post as $p)
-            <tr>
-              <td>{{ Auth::user()->name }}</td>
-              <td>{{ $p->acara }}</td>
-              <td>{{ $p->tanggal }}</td>
-              <td>{{ $p->waktu_mulai }}</td>
-              <td>{{ $p->waktu_selesai }}</td>
-              <td>
-                  
-                  <button type="button" class="btn-a btn--pill btn--red">
-                    <a href="/editpeminjaman/{{ $peminjaman->id }}">Edit</a>
-                  </button></td>
-            </tr>
-            @endforeach
-      
-          </tbody>
-        </table>
-      </div>
-
-      </div>
-      </div>            
-
-            </form>
-          </div>
+          <h3 class="section-title">Data Peminjaman</h3>
+          <!-- <p class="section-description">Berikut adalah daftar peminjaman</p> -->
         </div>
-
       </div>
+      </br>
+
+      <div class="row">
+	  	<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>Acara</th>
+          <th>Ruang</th>
+					<th>Tanggal</th>
+					<th>Waktu Mulai</th>
+					<th>Waktu Selesai</th>
+          <th>Aksi</th>
+				</tr>
+			</thead>
+			<tbody>
+			@if ($peminjaman->count() > 0)
+				@foreach ($peminjaman as $post)
+					<tr>
+						<td>{{ $post->acara }}</td>
+            <td>{{ $post->ruang }}</td>
+						<td>{{ $post->tanggal }}</td>
+						<td>{{ $post->waktu_mulai }}</td>
+						<td>{{ $post->waktu_selesai }}</td>
+            <td>
+                <a href="#" class="btn-a btn--pill btn--green">Status</a>
+                <a href="editpeminjaman/{{ $post->id }}" class="btn-a btn--pill btn--yellow">Edit</a>
+                <a href="/datapeminjaman/hapus/{{ $post->id }}" class="btn-a btn--pill btn--red">Hapus</a>
+                </td>
+					</tr>
+				@endforeach
+			@else
+				<tr>
+					<td>Tidak ada data</td>
+				</tr>
+			@endif
+			</tbody>
+		</table>
+      </div>
+
     </div>
   </section>
+
 
   <!--==========================
   Footer
 ============================-->
-  <footer id="footer">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          
-          <div class="copyright">
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        
+        <div class="copyright">
 
-            <a href="http://kopma.ugm.ac.id">
-              <img src="assets_user/img/footer-kopma.png" alt="Universitas Gadjah Mada"></a>
-      
-              <p>Bulaksumur H-7&amp;H-8, Yogyakarta, 55281<br>
-              <i class="fa fa-phone"></i> (0274) 565774, 519943<br>
-              <i class="fa fa-fax"></i> (0274) 566171<br>
-              <i class="fa fa-envelope"></i> info@kopma-ugm.net, brand@kopma-ugm.net</p>
+          <a href="http://kopma.ugm.ac.id">
+            <img src="assets_user/img/footer-kopma.png" alt="Universitas Gadjah Mada"></a>
+    
+            <p>Bulaksumur H-7&amp;H-8, Yogyakarta, 55281<br>
+            <i class="fa fa-phone"></i> (0274) 565774, 519943<br>
+            <i class="fa fa-fax"></i> (0274) 566171<br>
+            <i class="fa fa-envelope"></i> info@kopma-ugm.net, brand@kopma-ugm.net</p>
 
-            &copy; <strong>UNIVERSITAS GADJAH MADA</strong>
-          </div>
-          <div class="credits">
-
-          </div>
+          &copy; <strong>UNIVERSITAS GADJAH MADA</strong>
+        </div>
+        <div class="credits">
+        
         </div>
       </div>
     </div>
-  </footer>
-  <!-- #footer -->
+  </div>
+</footer>
+<!-- #footer -->
 
   <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 
@@ -183,4 +190,6 @@
 
 
 </body>
-  </html>
+
+</html>
+

@@ -55,10 +55,18 @@
 
       <nav id="nav-menu-container">
         <ul class="nav-menu">
-        <li class="menu-active"><a href="{{Route('home')}}">Home</a></li>
+          <li class="menu-active"><a href="{{Route('home')}}">Home</a></li>
           <li><a href="{{Route('profil')}}">Profil</a></li>
           <li><a href="{{Route('fasilitas')}}">Fasilitas</a></li>
-          <li><a href="{{Route('peminjaman')}}">Peminjaman</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Peminjaman<span class="caret"></span></a>
+
+              <div class="dropdown-menu dropdown">
+                <a class="dropdown-item" href="{{ route('list') }}">Daftar Peminjaman</a></br>
+                <a class="dropdown-item" href="{{ route('add') }}">Buat Peminjaman</a></br>
+                <a class="dropdown-item" href="{{ route('data') }}">Data Peminjaman</a>
+              </div>
+              </li>
           <li><a href="{{Route('events')}}">Agenda</a></li>
           <li class="nav-item dropdown">
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -79,7 +87,7 @@
     </div>
   </header>
   <!-- #header -->
-  
+
   <!--==========================
   About Section
   ============================-->
@@ -126,31 +134,31 @@
   <!--==========================
   Footer
 ============================-->
-<footer id="footer">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        
-        <div class="copyright">
+  <footer id="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          
+          <div class="copyright">
 
-          <a href="http://kopma.ugm.ac.id">
-            <img src="assets_user/img/footer-kopma.png" alt="Universitas Gadjah Mada"></a>
-    
-            <p>Bulaksumur H-7&amp;H-8, Yogyakarta, 55281<br>
-            <i class="fa fa-phone"></i> (0274) 565774, 519943<br>
-            <i class="fa fa-fax"></i> (0274) 566171<br>
-            <i class="fa fa-envelope"></i> info@kopma-ugm.net, brand@kopma-ugm.net</p>
+            <a href="http://kopma.ugm.ac.id">
+              <img src="assets_user/img/footer-kopma.png" alt="Universitas Gadjah Mada"></a>
+      
+              <p>Bulaksumur H-7&amp;H-8, Yogyakarta, 55281<br>
+              <i class="fa fa-phone"></i> (0274) 565774, 519943<br>
+              <i class="fa fa-fax"></i> (0274) 566171<br>
+              <i class="fa fa-envelope"></i> info@kopma-ugm.net, brand@kopma-ugm.net</p>
 
-          &copy; <strong>UNIVERSITAS GADJAH MADA</strong>
-        </div>
-        <div class="credits">
-        
+            &copy; <strong>UNIVERSITAS GADJAH MADA</strong>
+          </div>
+          <div class="credits">
+
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</footer>
-<!-- #footer -->
+  </footer>
+  <!-- #footer -->
 
   <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 
@@ -170,5 +178,4 @@
 
 
 </body>
-
-</html>
+  </html>

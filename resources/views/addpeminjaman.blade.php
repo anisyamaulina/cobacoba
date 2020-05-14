@@ -61,23 +61,20 @@
           <li><a href="{{Route('fasilitas')}}">Fasilitas</a></li>
           <li class="menu-active">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Peminjaman<span class="caret"></span></a>
-
               <div class="dropdown-menu dropdown">
                 <a class="dropdown-item" href="{{ route('list') }}">Daftar Peminjaman</a></br>
                 <a class="dropdown-item" href="{{ route('add') }}">Buat Peminjaman</a></br>
-                <a class="dropdown-item" href="{{ route('aksi') }}">Data Peminjaman</a>
+                <a class="dropdown-item" href="{{ route('data') }}">Data Peminjaman</a>
               </div>
               </li>
           <li><a href="{{Route('events')}}">Agenda</a></li>
           <li class="nav-item dropdown">
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                 {{ Auth::user()->name }} <span class="caret"></span></a>
-
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
                         {{ __('Logout') }}</a>
-
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>
@@ -103,11 +100,19 @@
 
       <div class="row">
       <div class="col-md-6 col-md-push-3">  
-      <form role="form" method="POST" action="{{ route('save') }}" enctype="multipart/form-data">
+      <form role="form" method="POST" action="{{ route('submit_peminjaman') }}" enctype="multipart/form-data">
 					    {{ csrf_field() }}
+
+              @if( Auth::user()->status == "" )
 							<div class="form-group">
 					    		<label>Acara</label>
 					    		<input type="text" name="acara" class="form-control" required="" value="{{ old('acara') }}">
+					    	</div>
+              <div class="form-group">
+                <label for="ruang">Ruang</label>
+                  <select class="form-control" id="ruang" type="text" name="ruang" class="form-control" required="" value="{{ old('ruang') }}">
+                    <option value="Ruang Sidang">Ruang Sidang</option>
+                  </select>
 					    	</div>
 							<div class="form-group">
 					    		<label>Tanggal</label>
@@ -121,10 +126,61 @@
 					    		<label>Waktu Selesai</label>
 					    		<input type="time" name="waktu_selesai" class="form-control" required="" value="{{ old('waktu_selesai') }}">
 					    	</div>
+              @endif
+              @if( Auth::user()->status == "1" )
+              <div class="form-group">
+                  <label>Acara</label>
+                  <input type="text" name="acara" class="form-control" required="" value="{{ old('acara') }}">
+                </div>
+                <div class="form-group">
+                <label for="ruang">Ruang</label>
+                  <select class="form-control" id="ruang" type="text" name="ruang" class="form-control" required="" value="{{ old('ruang') }}">
+                    <option value="Ruang Sidang">Ruang Sidang</option>
+                    <option value="Ruang Anggota">Ruang Anggota</option>
+                    <option value="Ruang Perpustakaan">Ruang Perpustakaan</option>
+                  </select>
+					    	</div>
+                <div class="form-group">
+                  <label>Barang</label>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Nama Barang</th>
+                          <th>Sisa Barang</th>
+                          <th>Jumlah Pinjam</th>
+                          <th>Jumlah Request</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      @foreach ($barang as $post)
+                        <tr>
+                          <td>{{ $post->nama_barang }}</td>
+                          <td>{{ $post->jumlah_barang }}</td>
+                          <td><input type="text" id="jumlah_pinjam" name="jumlah_pinjam" required="" value="{{ old('jumlah_pinjam') }}"></td>
+                          <td><input type="text" id="jumlah_request" name="jumlah_request" required="" value="{{ old('jumlah_request') }}"></td>
+                        </tr>
+                        
+                        @endforeach
+                      </tbody>
+                    </table>
+                </div>
+							<div class="form-group">
+					    		<label>Tanggal</label>
+					    		<input type="date" name="tanggal" class="form-control" required="" value="{{ old('tanggal') }}">
+					    	</div>
+							<div class="form-group">
+					    		<label>Waktu Mulai</label>
+					    		<input type="time" name="waktu_mulai" class="form-control" required="" value="{{ old('waktu_mulai') }}">
+					    	</div>
+							<div class="form-group">
+					    		<label>Waktu Selesai</label>
+					    		<input type="time" name="waktu_selesai" class="form-control" required="" value="{{ old('waktu_selesai') }}">
+					    	</div>
+            @endif
 
               <div class="text-center">
                 <button type="submit" class="btn btn--pill btn--green">Pinjam</button>
-                </div>
+              </div>
 			</form>
       </div>
       </div>

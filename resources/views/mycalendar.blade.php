@@ -1,32 +1,49 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.css"/>
+  <meta charset="utf-8">
+  <title>Pinjam Ruang Kopma</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
 
-    <!-- Place your favicon.ico and apple-touch-icon.png in the template root directory -->
-    <link href="favicon.ico" rel="shortcut icon">
+  <!-- Facebook Opengraph integration: https://developers.facebook.com/docs/sharing/opengraph -->
+  <meta property="og:title" content="">
+  <meta property="og:image" content="">
+  <meta property="og:url" content="">
+  <meta property="og:site_name" content="">
+  <meta property="og:description" content="">
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet">
+  <!-- Twitter Cards integration: https://dev.twitter.com/cards/  -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="">
+  <meta name="twitter:title" content="">
+  <meta name="twitter:description" content="">
+  <meta name="twitter:image" content="">
 
-    <!-- Bootstrap CSS File -->
-    <link href="assets_user/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Place your favicon.ico and apple-touch-icon.png in the template root directory -->
+  <link href="favicon.ico" rel="shortcut icon">
 
-    <!-- Libraries CSS Files -->
-    <link href="assets_user/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="assets_user/lib/animate-css/animate.min.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet">
 
-    <!-- Main Stylesheet File -->
-    <link href="assets_user/css/style.css" rel="stylesheet">
+  <!-- Bootstrap CSS File -->
+  <link href="assets_user/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Libraries CSS Files -->
+  <link href="assets_user/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="assets_user/lib/animate-css/animate.min.css" rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+  <link href="assets_user/css/style.css" rel="stylesheet">
 
 </head>
-<body>
 
-     <!--==========================
+<body>
+  <div id="preloader"></div>
+
+  <!--==========================
   Header Section
   ============================-->
   <header id="header">
@@ -38,11 +55,19 @@
 
       <nav id="nav-menu-container">
         <ul class="nav-menu">
-          <li><a href="{{Route('home')}}">Home</a></li>
+          <li class="menu-active"><a href="{{Route('home')}}">Home</a></li>
           <li><a href="{{Route('profil')}}">Profil</a></li>
           <li><a href="{{Route('fasilitas')}}">Fasilitas</a></li>
-          <li><a href="{{Route('peminjaman')}}">Peminjaman</a></li>
-          <li class="menu-active"><a href="{{Route('events')}}">Agenda</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Peminjaman<span class="caret"></span></a>
+
+              <div class="dropdown-menu dropdown">
+                <a class="dropdown-item" href="{{ route('list') }}">Daftar Peminjaman</a></br>
+                <a class="dropdown-item" href="{{ route('add') }}">Buat Peminjaman</a></br>
+                <a class="dropdown-item" href="{{ route('data') }}">Data Peminjaman</a>
+              </div>
+              </li>
+          <li><a href="{{Route('events')}}">Agenda</a></li>
           <li class="nav-item dropdown">
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                 {{ Auth::user()->name }} <span class="caret"></span></a>
@@ -63,23 +88,23 @@
   </header>
   <!-- #header -->
 
-    <!--==========================
-  Judul
+  <!--==========================
+  Calendar Section
   ============================-->
-  <section id="portfolio">
+  <section id="about">
     <div class="container wow fadeInUp">
       <div class="row">
         <div class="col-md-12">
-          <h3 class="section-title">Agenda Peminjaman Ruang</h3>
+          <h3 class="section-title">DAFTAR PEMINJAMAN RUANG</h3>
           <!-- <div class="section-title-divider"></div> -->
-          <p class="section-description">Jadwal Peminjaman Ditampilkan Pada Kalender</p>
         </div>
       </div>
     </div>
+    <div class="container about-container wow fadeInUp">
+      <div class="row">
+      </br>
+      </br>
 
-<!--==========================
-  Calendar Section
-  ============================-->
 <div class="container">
     <div class="panel panel-primary">
         <div class="panel-heading">
@@ -95,10 +120,11 @@
 </section>
 <!-- #calendar -->
 
-<!--==========================
+
+  <!--==========================
   Footer
 ============================-->
-<footer id="footer">
+  <footer id="footer">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
@@ -124,6 +150,22 @@
   </footer>
   <!-- #footer -->
 
-</body>
-</html>
+  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 
+  <!-- Required JavaScript Libraries -->
+  <script src="assets_user/lib/jquery/jquery.min.js"></script>
+  <script src="assets_user/lib/bootstrap/js/bootstrap.min.js"></script>
+  <script src="assets_user/lib/superfish/hoverIntent.js"></script>
+  <script src="assets_user/lib/superfish/superfish.min.js"></script>
+  <script src="assets_user/lib/morphext/morphext.min.js"></script>
+  <script src="assets_user/lib/wow/wow.min.js"></script>
+  <script src="assets_user/lib/stickyjs/sticky.js"></script>
+  <script src="assets_user/lib/easing/easing.js"></script>
+
+  <script src="assets_user/js/custom.js"></script>
+
+  <script src="assets_user/contactform/contactform.js"></script>
+
+
+</body>
+  </html>

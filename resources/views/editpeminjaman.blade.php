@@ -59,7 +59,15 @@
           <li><a href="{{Route('home')}}">Home</a></li>
           <li class="menu-active"><a href="{{Route('profil')}}">Profil</a></li>
           <li><a href="{{Route('fasilitas')}}">Fasilitas</a></li>
-          <li><a href="{{Route('peminjaman')}}">Peminjaman</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Peminjaman<span class="caret"></span></a>
+
+              <div class="dropdown-menu dropdown">
+                <a class="dropdown-item" href="{{ route('list') }}">Daftar Peminjaman</a></br>
+                <a class="dropdown-item" href="{{ route('add') }}">Buat Peminjaman</a></br>
+                <a class="dropdown-item" href="{{ route('data') }}">Data Peminjaman</a>
+              </div>
+              </li>
           <li><a href="{{Route('events')}}">Agenda</a></li>
           <li class="nav-item dropdown">
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -88,62 +96,143 @@
     <div class="container wow fadeInUp">
       <div class="row">
         <div class="col-md-12">
-          <h3 class="section-title">Profil Pengguna</h3>
-          <!-- <div class="section-title-divider"></div> -->
-          <!-- <p class="section-description"></p> -->
-      
-          <img src="assets_user/img/team-4.jpg" class="img-circle" alt=""></img>
-          </br>
+            <h3 class="section-title">Edit Peminjaman</h3>
+        </br>
+            <img src="assets_user/img/team-4.jpg" class="img-circle" alt=""></img>
+        </br>
 
-          <div class="col-md-6 col-md-push-3"> 
-        <div class="form-group">
-              <form action="peminjaman.php" method="post" enctype="multipart/form-data">
-                <p>Pilih foto<input type='file' name='foto' /></p>
-              </form>
-        </div>
-     
-  @foreach($peminjaman as $p)
-	<form action="/update" method="post">
-		{{ csrf_field() }}
-		
-    <div class="form-group">
-      <label for="ktm">KTM:</label>
-      <input type="text" class="form-control" id="{id}" placeholder="KTM" name="ktm" value="{{ $peminjaman->ktm }}">
-    </div>
-    <div class="form-group">
-      <label for="agenda">Agenda:</label>
-      <input type="text" class="form-control" id="{id}" placeholder="Agenda" name="agenda" value="{{ $peminjaman->agenda }}">
-    </div>
-    <div class="form-group">
-      <label for="tanggal">Tanggal:</label>
-      <input type="date" class="form-control" id="{id}" placeholder="Tanggal" name="tanggal" value="{{ $peminjaman->tanggal }}">
-    </div>
-    <div class="form-group">
-      <label for="waktu_mulai">Waktu Mulai:</label>
-      <input type="time" class="form-control" id="{id}" placeholder="Waktu Mulai" name="waktu_mulai" value="{{ $peminjaman->waktu_mulai }}">
-    </div>
-    <div class="form-group">
-      <label for="waktu_selesai">Waktu Selesai:</label>
-      <input type="time" class="form-control" id="{id}" placeholder="Waktu Selesai" name="waktu_selesai" value="{{ $peminjaman->waktu_selesai }}">
-    </div>
-    
-  </form>
-  @endforeach
-</div>
+      <div class="col-md-6 col-md-push-3">  
+      @foreach($peminjaman as $peminjaman)     
+        <form action="/peminjaman/update" method="post">
+        {{ csrf_field() }}
+        <input type="hidden" name="id" value="{{ $peminjaman->id }}"> <br/>
+        
+        @if( Auth::user()->status == "" )
+            <div class="form-group">
+                <label for="acara">Acara:</label>
+                <input type="text" class="form-control" id="acara" placeholder="Acara" name="acara" required="required" value="{{ $peminjaman->acara }}">
+            </div>
+            <div class="form-group">
+                <label for="ruang">Ruang:</label>
+                <input type="text" class="form-control" id="ruang" placeholder="Ruang" name="ruang" required="required" value="{{ $peminjaman->ruang }}">
+            </div>
+            <div class="form-group">
+                <label for="tanggal">Tanggal:</label>
+                <input type="date" class="form-control" id="tanggal" placeholder="Tanggal" name="tanggal" required="required" value="{{ $peminjaman->tanggal }}">
+            </div>
+            <div class="form-group">
+                <label for="waktu_mulai">Waktu Mulai:</label>
+                <input type="time" class="form-control" id="waktu_mulai" placeholder="Waktu Mulai" name="waktu_mulai" required="required" value="{{ $peminjaman->waktu_mulai }}">
+            </div>
+            <div class="form-group">
+                <label for="waktu_selesai">Waktu Selesai:</label>
+                <input type="time" class="form-control" id="waktu_selesai" placeholder="Waktu Selesai" name="waktu_selesai" required="required" value="{{ $peminjaman->waktu_selesai }}">
+            </div>
+        @endif
+        @if( Auth::user()->status == "1" )
+            <div class="form-group">
+                <label for="acara">Acara:</label>
+                <input type="text" class="form-control" id="acara" placeholder="Acara" name="acara" required="required" value="{{ $peminjaman->acara }}">
+            </div>
+            <div class="form-group">
+              <label for="ruang">Ruang</label>
+                  <select class="form-control" id="ruang" type="text" name="ruang" required="" value="{{ $peminjaman->ruang }}">
+                    <option value="Ruang Sidang">Ruang Sidang</option>
+                    <option value="Ruang Anggota">Ruang Anggota</option>
+                    <option value="Ruang Perpustakaan">Ruang Perpustakaan</option>
+                  </select>
+                </div>
+            <div class="form-group">
+            <label>Barang</label>
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th>Nama Barang</th>
+                          <th>Sisa Barang</th>
+                          <th>Jumlah Pinjam</th>
+                          <th>Jumlah Request</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      <tr>
+                          <td id="barang" name="barang" required="" value="{{ old('barang') }}">Proyektor</td>
+                          <td id="sisa_barang" name="sisa_barang" required="" value="{{ old('sisa_barang') }}">1</td>
+                          <td><input type="text" id="jumlah_pinjam" name="jumlah_pinjam" required="" value="{{ old('jumlah_pinjam') }}"></td>
+                          <td><input type="text" id="jumlah_request" name="jumlah_request" required="" value="{{ old('jumlah_request') }}"></td>
+                        </tr>
+                        <tr>
+                          <td id="barang" name="barang" required="" value="{{ old('barang') }}">Layar Proyektor</td>
+                          <td id="sisa_barang" name="sisa_barang" required="" value="{{ old('sisa_barang') }}">1</td>
+                          <td><input type="text" id="jumlah_pinjam" name="jumlah_pinjam" required="" value="{{ old('jumlah_pinjam') }}"></td>
+                          <td><input type="text" id="jumlah_request" name="jumlah_request" required="" value="{{ old('jumlah_request') }}"></td>
+                        </tr>
+                        <tr>
+                          <td id="barang" name="barang" required="" value="{{ old('barang') }}">Buku</td>
+                          <td id="sisa_barang" name="sisa_barang" required="" value="{{ old('sisa_barang') }}">1</td>
+                          <td><input type="text" id="jumlah_pinjam" name="jumlah_pinjam" required="" value="{{ old('jumlah_pinjam') }}"></td>
+                          <td><input type="text" id="jumlah_request" name="jumlah_request" required="" value="{{ old('jumlah_request') }}"></td>
+                        </tr>
+                        <tr>
+                          <td id="barang" name="barang" required="" value="{{ old('barang') }}">Meja Ruang Perpustakaan</td>
+                          <td id="sisa_barang" name="sisa_barang" required="" value="{{ old('sisa_barang') }}">1</td>
+                          <td><input type="text" id="jumlah_pinjam" name="jumlah_pinjam" required="" value="{{ old('jumlah_pinjam') }}"></td>
+                          <td><input type="text" id="jumlah_request" name="jumlah_request" required="" value="{{ old('jumlah_request') }}"></td>
+                        </tr>
+                        <tr>
+                          <td id="barang" name="barang" required="" value="{{ old('barang') }}">Sound System</td>
+                          <td id="sisa_barang" name="sisa_barang" required="" value="{{ old('sisa_barang') }}">1</td>
+                          <td><input type="text" id="jumlah_pinjam" name="jumlah_pinjam" required="" value="{{ old('jumlah_pinjam') }}"></td>
+                          <td><input type="text" id="jumlah_request" name="jumlah_request" required="" value="{{ old('jumlah_request') }}"></td>
+                        </tr>
+                        <tr>
+                          <td id="barang" name="barang" required="" value="{{ old('barang') }}">Meja Tinggi Ruang Anggota</td>
+                          <td id="sisa_barang" name="sisa_barang" required="" value="{{ old('sisa_barang') }}">1</td>
+                          <td><input type="text" id="jumlah_pinjam" name="jumlah_pinjam" required="" value="{{ old('jumlah_pinjam') }}"></td>
+                          <td><input type="text" id="jumlah_request" name="jumlah_request" required="" value="{{ old('jumlah_request') }}"></td>
+                        </tr>
+                        <tr>
+                          <td id="barang" name="barang" required="" value="{{ old('barang') }}">Meja Pendek Ruang Anggota</td>
+                          <td id="sisa_barang" name="sisa_barang" required="" value="{{ old('sisa_barang') }}">1</td>
+                          <td><input type="text" id="jumlah_pinjam" name="jumlah_pinjam" required="" value="{{ old('jumlah_pinjam') }}"></td>
+                          <td><input type="text" id="jumlah_request" name="jumlah_request" required="" value="{{ old('jumlah_request') }}"></td>
+                        </tr>
+                        <tr>
+                          <td id="barang" name="barang" required="" value="{{ old('barang') }}">Kursi</td>
+                          <td id="sisa_barang" name="sisa_barang" required="" value="{{ old('sisa_barang') }}">1</td>
+                          <td><input type="text" id="jumlah_pinjam" name="jumlah_pinjam" required="" value="{{ old('jumlah_pinjam') }}"></td>
+                          <td><input type="text" id="jumlah_request" name="jumlah_request" required="" value="{{ old('jumlah_request') }}"></td>
+                        </tr>
+                        <tr>
+                          <td id="barang" name="barang" required="" value="{{ old('barang') }}">Karpet</td>
+                          <td id="sisa_barang" name="sisa_barang" required="" value="{{ old('sisa_barang') }}">1</td>
+                          <td><input type="text" id="jumlah_pinjam" name="jumlah_pinjam" required="" value="{{ old('jumlah_pinjam') }}"></td>
+                          <td><input type="text" id="jumlah_request" name="jumlah_request" required="" value="{{ old('jumlah_request') }}"></td>
+                        </tr>                     
+                      </tbody>
+                    </table>
+                 </div>
+            <div class="form-group">
+                <label for="tanggal">Tanggal:</label>
+                <input type="date" class="form-control" id="tanggal" placeholder="Tanggal" name="tanggal" required="required" value="{{ $peminjaman->tanggal }}">
+            </div>
+            <div class="form-group">
+                <label for="waktu_mulai">Waktu Mulai:</label>
+                <input type="time" class="form-control" id="waktu_mulai" placeholder="Waktu Mulai" name="waktu_mulai" required="required" value="{{ $peminjaman->waktu_mulai }}">
+            </div>
+            <div class="form-group">
+                <label for="waktu_selesai">Waktu Selesai:</label>
+                <input type="time" class="form-control" id="waktu_selesai" placeholder="Waktu Selesai" name="waktu_selesai" required="required" value="{{ $peminjaman->waktu_selesai }}">
+            </div>
+        @endif
+
+            <div class="text-center">
+                    <button type="submit" class="btn btn--pill btn--green" value="Simpan Data"><button>
+            </div>
+        </form>
+        @endforeach
+      </div>
 
       </div>
-      </div>
-              <div class="text-center">
-                <button type="submit" class="btn btn--pill btn--green">
-                <a href="/aksi/{{ $peminjaman->id }}">Simpan Data</a>
-                </button>
-              </div>
-              
-
-            </form>
-          </div>
-        </div>
-
       </div>
     </div>
   </section>
