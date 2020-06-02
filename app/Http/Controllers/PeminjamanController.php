@@ -20,12 +20,14 @@ class PeminjamanController extends Controller
     }
 
     public function save(Request $request){
+        dd($request->input());
         $table= new Peminjaman();
         $table->acara = $request->input('acara');
         $table->ruang = $request->input('ruang');
         $table->tanggal = $request->input('tanggal');
         $table->waktu_mulai = $request->input('waktu_mulai');
         $table->waktu_selesai = $request->input('waktu_selesai');
+        $table->save();
 
         $table= new Barang();
         $table->nama_barang = $request->input('nama_barang');
@@ -76,6 +78,7 @@ class PeminjamanController extends Controller
     }
 
     public function submit_peminjaman(Request $request){
+        dd($request->input());
         $table= new Peminjaman();
         $table->acara = $request->input('acara');
         $table->ruang = $request->input('ruang');
@@ -84,14 +87,53 @@ class PeminjamanController extends Controller
         $table->waktu_selesai = $request->input('waktu_selesai');
         $table->save();
 
-        DB::table('barang')->where('id',$request->input('id'))->update([
-        
-            'jumlah_pinjam' => $request->input('jumlah_barang'),
-            'jumlah_request' => $request->input('jumlah_request')
+        for($i=0;$i<sizeof(Barang::get());$i++){
             
-        ]);
+            //Get Sisa barang
+            $sisa_barang = Barang::get()->where('id',$request->input('id_barang_'.$i)[0]['sisa_barang']);
+            echo "sisa barang : ".$sisa_barang."<br>";
+            // $int_sisa_barang = (int)$sisa_barang;
+            
+            // Get Jumlah yang dipinjam
+            $jumlah_pinjam = Barang::get()->where('id',$request->input('id_barang_'.$i)[0]['jumlah_pinjam']);
+            // $int_jumlah_pinjam = (int)$jumlah_pinjam;
+            echo "jumlah_pinjam : ".$jumlah_pinjam."<br>";
+            
+            // Get Jumlah request
+            $jumlah_request = Barang::get()->where('id',$request->input('id_barang_'.$i)[0]['jumlah_request']);
+            // $int_jumlah_request = (int)$jumlah_request;
+            echo "jumlah_request : ".$jumlah_request."<br>";
+            
+            // Get input Jumlah barang
+            $input_jumlah_barang =  $request->input('jumlah_barang_'.$i);
+            // $int_input_jumlah_barang = (int)$input_jumlah_barang;
+            echo "input_jumlah_barang : ".$input_jumlah_barang."<br>";
 
-        dd($request->input());
+            // Get input Jumlah request
+            $input_jumlah_request =  $request->input('jumlah_request_'.$i);
+            // $int_input_jumlah_request = (int)$input_jumlah_request;
+            echo "input_jumlah_request : ".$input_jumlah_request."<br>";
+           
+            
+            // cek apakah barang tersedia atau tidak
+            // if($int_sisa_barang>0){
+                // Mengupdate data jumlah_pinjam dan sisa_barang
+                // 1. jumlah_pinjam = jumlah_pinjam + input jumlah barang
+                // 2. sisa_barang = sisa_barang - input jumlah barang
+                // DB::table('barang')->where('id',$request->input('id_barang_'.$i))->update([
+                //     'jumlah_pinjam' => $int_jumlah_pinjam + $int_input_jumlah_barang,
+                //     'sisa_barang' => $sisa_barang - $int_input_jumlah_barang
+                //     ]);
+                // }
+            // if($int_sisa_barang==0){
+                // Mengupdate data jumlah_request
+                // 1. jumlah_request = jumlah_request + input jumlah request
+                // DB::table('barang')->where('id',$request->input('id_barang_'.$i))->update([
+                //     'jumlah_request' => $int_jumlah_request + $int_input_jumlah_request
+                //     ]);
+                // }
+        }
+        // dd($int_jumlah_pinjam + $int_input_jumlah_barang);
     }
 
 

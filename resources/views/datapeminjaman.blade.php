@@ -116,13 +116,13 @@
 			</thead>
 			<tbody>
 			@if ($peminjaman->count() > 0)
-				@foreach ($peminjaman as $post)
+				@foreach ($peminjaman as $peminjaman)
 					<tr>
-						<td>{{ $post->acara }}</td>
-            <td>{{ $post->ruang }}</td>
-						<td>{{ $post->tanggal }}</td>
-						<td>{{ $post->waktu_mulai }}</td>
-						<td>{{ $post->waktu_selesai }}</td>
+						<td>{{ $peminjaman->acara }}</td>
+            <td>{{ $peminjaman->ruang }}</td>
+						<td>{{ $peminjaman->tanggal }}</td>
+						<td>{{ $peminjaman->waktu_mulai }}</td>
+						<td>{{ $peminjaman->waktu_selesai }}</td>
             <td>
                 <a href="#" class="btn-a btn--pill btn--green">Status</a>
                 <a href="editpeminjaman/{{ $post->id }}" class="btn-a btn--pill btn--yellow">Edit</a>

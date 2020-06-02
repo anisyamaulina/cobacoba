@@ -100,7 +100,7 @@
 
       <div class="row">
       <div class="col-md-6 col-md-push-3">  
-      <form role="form" method="POST" action="{{ route('submit_peminjaman') }}" enctype="multipart/form-data">
+      <form role="form" method="POST" action="{{ route('save') }}" enctype="multipart/form-data">
 					    {{ csrf_field() }}
 
               @if( Auth::user()->status == "" )
@@ -147,6 +147,7 @@
                         <tr>
                           <th>Nama Barang</th>
                           <th>Sisa Barang</th>
+                          <th></th>
                           <th>Jumlah Pinjam</th>
                           <th>Jumlah Request</th>
                         </tr>
@@ -156,6 +157,7 @@
                         <tr>
                           <td>{{ $post->nama_barang }}</td>
                           <td>{{ $post->jumlah_barang }}</td>
+                          <td><input type="hidden" id="jumlah_pinjam" name="id_barang" required="" value="{{ $post->id_barang }}"></td>
                           <td><input type="text" id="jumlah_pinjam" name="jumlah_pinjam" required="" value="{{ old('jumlah_pinjam') }}"></td>
                           <td><input type="text" id="jumlah_request" name="jumlah_request" required="" value="{{ old('jumlah_request') }}"></td>
                         </tr>
