@@ -10,6 +10,7 @@
     <meta name="keywords" content="Colorlib Templates">
 
     <!-- Title Page-->
+    <link rel="icon" href="assets_user/img/footer-kopma.png">
     <title>Pinjam Ruang Kopma</title>
 
     <!-- Icons font CSS-->

@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="utf-8">
+  <link rel="icon" href="assets_user/img/footer-kopma.png">
   <title>Pinjam Ruang Kopma</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
@@ -63,7 +64,6 @@
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Peminjaman<span class="caret"></span></a>
 
               <div class="dropdown-menu dropdown">
-                <a class="dropdown-item" href="{{ route('list') }}">Daftar Peminjaman</a></br>
                 <a class="dropdown-item" href="{{ route('add') }}">Buat Peminjaman</a></br>
                 <a class="dropdown-item" href="{{ route('data') }}">Data Peminjaman</a>
               </div>
@@ -114,15 +114,14 @@
           <th>Aksi</th>
 				</tr>
 			</thead>
-			<tbody>
-			@if ($peminjaman->count() > 0)
-				@foreach ($peminjaman as $peminjaman)
+      <tbody>
+				@foreach ($peminjaman as $post->id)
 					<tr>
-						<td>{{ $peminjaman->acara }}</td>
-            <td>{{ $peminjaman->ruang }}</td>
-						<td>{{ $peminjaman->tanggal }}</td>
-						<td>{{ $peminjaman->waktu_mulai }}</td>
-						<td>{{ $peminjaman->waktu_selesai }}</td>
+						<td>{{ $post->acara }}</td>
+            <td>{{ $post->ruang }}</td>
+						<td>{{ $post->tanggal }}</td>
+						<td>{{ $post->waktu_mulai }}</td>
+						<td>{{ $post->waktu_selesai }}</td>
             <td>
                 <a href="#" class="btn-a btn--pill btn--green">Status</a>
                 <a href="editpeminjaman/{{ $post->id }}" class="btn-a btn--pill btn--yellow">Edit</a>
@@ -130,12 +129,8 @@
                 </td>
 					</tr>
 				@endforeach
-			@else
-				<tr>
-					<td>Tidak ada data</td>
-				</tr>
-			@endif
 			</tbody>
+			
 		</table>
       </div>
 

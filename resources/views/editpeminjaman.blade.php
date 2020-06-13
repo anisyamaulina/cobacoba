@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="utf-8">
+  <link rel="icon" href="assets_user/img/footer-kopma.png">
   <title>Pinjam Ruang Kopma</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
@@ -156,55 +157,55 @@
                       <tbody>
                       <tr>
                           <td id="barang" name="barang" required="" value="{{ old('barang') }}">Proyektor</td>
-                          <td id="sisa_barang" name="sisa_barang" required="" value="{{ old('sisa_barang') }}">1</td>
+                          <td id="barang_tersedia" name="barang_tersedia" required="" value="{{ old('barang_tersedia') }}">1</td>
                           <td><input type="text" id="jumlah_pinjam" name="jumlah_pinjam" required="" value="{{ old('jumlah_pinjam') }}"></td>
                           <td><input type="text" id="jumlah_request" name="jumlah_request" required="" value="{{ old('jumlah_request') }}"></td>
                         </tr>
                         <tr>
                           <td id="barang" name="barang" required="" value="{{ old('barang') }}">Layar Proyektor</td>
-                          <td id="sisa_barang" name="sisa_barang" required="" value="{{ old('sisa_barang') }}">1</td>
+                          <td id="barang_tersedia" name="barang_tersedia" required="" value="{{ old('barang_tersedia') }}">1</td>
                           <td><input type="text" id="jumlah_pinjam" name="jumlah_pinjam" required="" value="{{ old('jumlah_pinjam') }}"></td>
                           <td><input type="text" id="jumlah_request" name="jumlah_request" required="" value="{{ old('jumlah_request') }}"></td>
                         </tr>
                         <tr>
                           <td id="barang" name="barang" required="" value="{{ old('barang') }}">Buku</td>
-                          <td id="sisa_barang" name="sisa_barang" required="" value="{{ old('sisa_barang') }}">1</td>
+                          <td id="barang_tersedia" name="barang_tersedia" required="" value="{{ old('barang_tersedia') }}">1</td>
                           <td><input type="text" id="jumlah_pinjam" name="jumlah_pinjam" required="" value="{{ old('jumlah_pinjam') }}"></td>
                           <td><input type="text" id="jumlah_request" name="jumlah_request" required="" value="{{ old('jumlah_request') }}"></td>
                         </tr>
                         <tr>
                           <td id="barang" name="barang" required="" value="{{ old('barang') }}">Meja Ruang Perpustakaan</td>
-                          <td id="sisa_barang" name="sisa_barang" required="" value="{{ old('sisa_barang') }}">1</td>
+                          <td id="barang_tersedia" name="barang_tersedia" required="" value="{{ old('barang_tersedia') }}">1</td>
                           <td><input type="text" id="jumlah_pinjam" name="jumlah_pinjam" required="" value="{{ old('jumlah_pinjam') }}"></td>
                           <td><input type="text" id="jumlah_request" name="jumlah_request" required="" value="{{ old('jumlah_request') }}"></td>
                         </tr>
                         <tr>
                           <td id="barang" name="barang" required="" value="{{ old('barang') }}">Sound System</td>
-                          <td id="sisa_barang" name="sisa_barang" required="" value="{{ old('sisa_barang') }}">1</td>
+                          <td id="barang_tersedia" name="barang_tersedia" required="" value="{{ old('barang_tersedia') }}">1</td>
                           <td><input type="text" id="jumlah_pinjam" name="jumlah_pinjam" required="" value="{{ old('jumlah_pinjam') }}"></td>
                           <td><input type="text" id="jumlah_request" name="jumlah_request" required="" value="{{ old('jumlah_request') }}"></td>
                         </tr>
                         <tr>
                           <td id="barang" name="barang" required="" value="{{ old('barang') }}">Meja Tinggi Ruang Anggota</td>
-                          <td id="sisa_barang" name="sisa_barang" required="" value="{{ old('sisa_barang') }}">1</td>
+                          <td id="barang_tersedia" name="barang_tersedia" required="" value="{{ old('barang_tersedia') }}">1</td>
                           <td><input type="text" id="jumlah_pinjam" name="jumlah_pinjam" required="" value="{{ old('jumlah_pinjam') }}"></td>
                           <td><input type="text" id="jumlah_request" name="jumlah_request" required="" value="{{ old('jumlah_request') }}"></td>
                         </tr>
                         <tr>
                           <td id="barang" name="barang" required="" value="{{ old('barang') }}">Meja Pendek Ruang Anggota</td>
-                          <td id="sisa_barang" name="sisa_barang" required="" value="{{ old('sisa_barang') }}">1</td>
+                          <td id="barang_tersedia" name="barang_tersedia" required="" value="{{ old('barang_tersedia') }}">1</td>
                           <td><input type="text" id="jumlah_pinjam" name="jumlah_pinjam" required="" value="{{ old('jumlah_pinjam') }}"></td>
                           <td><input type="text" id="jumlah_request" name="jumlah_request" required="" value="{{ old('jumlah_request') }}"></td>
                         </tr>
                         <tr>
                           <td id="barang" name="barang" required="" value="{{ old('barang') }}">Kursi</td>
-                          <td id="sisa_barang" name="sisa_barang" required="" value="{{ old('sisa_barang') }}">1</td>
+                          <td id="barang_tersedia" name="barang_tersedia" required="" value="{{ old('barang_tersedia') }}">1</td>
                           <td><input type="text" id="jumlah_pinjam" name="jumlah_pinjam" required="" value="{{ old('jumlah_pinjam') }}"></td>
                           <td><input type="text" id="jumlah_request" name="jumlah_request" required="" value="{{ old('jumlah_request') }}"></td>
                         </tr>
                         <tr>
                           <td id="barang" name="barang" required="" value="{{ old('barang') }}">Karpet</td>
-                          <td id="sisa_barang" name="sisa_barang" required="" value="{{ old('sisa_barang') }}">1</td>
+                          <td id="barang_tersedia" name="barang_tersedia" required="" value="{{ old('barang_tersedia') }}">1</td>
                           <td><input type="text" id="jumlah_pinjam" name="jumlah_pinjam" required="" value="{{ old('jumlah_pinjam') }}"></td>
                           <td><input type="text" id="jumlah_request" name="jumlah_request" required="" value="{{ old('jumlah_request') }}"></td>
                         </tr>                     

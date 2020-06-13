@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="utf-8">
+  <link rel="icon" href="assets_user/img/footer-kopma.png">
   <title>Pinjam Ruang Kopma</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
@@ -100,7 +101,7 @@
 
       <div class="row">
       <div class="col-md-6 col-md-push-3">  
-      <form role="form" method="POST" action="{{ route('save') }}" enctype="multipart/form-data">
+      <form role="form" method="POST" action="{{ route('submit_peminjaman') }}" enctype="multipart/form-data">
 					    {{ csrf_field() }}
 
               @if( Auth::user()->status == "" )
@@ -156,10 +157,10 @@
                       @foreach ($barang as $post)
                         <tr>
                           <td>{{ $post->nama_barang }}</td>
-                          <td>{{ $post->jumlah_barang }}</td>
-                          <td><input type="hidden" id="jumlah_pinjam" name="id_barang" required="" value="{{ $post->id_barang }}"></td>
-                          <td><input type="text" id="jumlah_pinjam" name="jumlah_pinjam" required="" value="{{ old('jumlah_pinjam') }}"></td>
-                          <td><input type="text" id="jumlah_request" name="jumlah_request" required="" value="{{ old('jumlah_request') }}"></td>
+                          <td>{{ $post->barang_tersedia }}</td>
+                          <td><input type="hidden" id="jumlah_pinjam" name="id_barang_{{$post->id}}" required="" value="{{ $post->id }}"></td>
+                          <td><input type="text" id="jumlah_pinjam" name="jumlah_pinjam_{{$post->id}}" required="" value="{{ old('jumlah_pinjam') }}"></td>
+                          <td><input type="text" id="jumlah_request" name="jumlah_request_{{$post->id}}" required="" value="{{ old('jumlah_request') }}"></td>
                         </tr>
                         
                         @endforeach

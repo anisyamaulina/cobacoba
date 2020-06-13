@@ -45,35 +45,20 @@ Route::get('fasilitas', function () {
 
 Route::get('/addpeminjaman', 'PeminjamanController@add')->name('add');
 
-Route::post('/save', 'PeminjamanController@save')->name('save');
-
-Route::get('/datapeminjaman', 'PeminjamanController@index')->name('list');
-
-Route::get('/editpeminjaman/{id}','PeminjamanController@edit')->name('editpeminjaman');
-
-Route::post('/peminjaman/update','PeminjamanController@update')->name('update');
-
-Route::get('/datapeminjaman/hapus/{id}', 'PeminjamanController@delete');
+// Route::post('/peminjaman/update','PeminjamanController@update')->name('update');
 
 Route::post('/submit_peminjaman', 'PeminjamanController@submit_peminjaman')->name('submit_peminjaman');
 
-Route::get('data', function () {
-	return view('datapeminjaman');
-})->name('data');
+Route::post('/save', 'PeminjamanController@save')->name('save');
+
+Route::get('/data/{id}', 'PeminjamanController@index')->name('data');
+
+Route::get('/editpeminjaman/{id}','PeminjamanController@edit')->name('editpeminjaman');
+
+Route::get('/datapeminjaman/hapus/{id}', 'PeminjamanController@delete');
 
 Route::get('agenda', function () {
 	return view('agenda');
 })->name('agenda');
 
 Route::get('events', 'EventController@index')->name('events');
-
-
-
-
-
-
-
-
-//route CRUD
-// Route::get('/users/tambah','UsersController@tambah');
-// Route::post('/users/store','UsersController@store');
