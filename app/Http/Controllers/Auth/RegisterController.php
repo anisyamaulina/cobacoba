@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Fakultas;
+use App\Prodi;
+use App\Fakultas_prodi;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -50,7 +52,6 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'foto' => ['required', 'string', 'max:255'],
             'name' => ['required', 'string', 'max:255'],
             'fakultas' => ['required', 'string', 'max:255'],
             'prodi' => ['required', 'string', 'max:255'],
@@ -75,7 +76,6 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'foto' => $data['foto'],
             'name' => $data['name'],
             'fakultas' => $data['fakultas'],
             'prodi' => $data['prodi'],
@@ -100,6 +100,5 @@ class RegisterController extends Controller
         $prodi = Prodi::where('fakultas_id', '=', $id)->pluck("nama_prodi", "id");
         return json_encode($prodi);
     }
-
     
 }

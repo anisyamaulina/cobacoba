@@ -115,7 +115,7 @@
 				</tr>
 			</thead>
       <tbody>
-				@foreach ($peminjaman as $post->id)
+				@foreach ($peminjaman as $post)
 					<tr>
 						<td>{{ $post->acara }}</td>
             <td>{{ $post->ruang }}</td>

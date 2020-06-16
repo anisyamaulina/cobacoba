@@ -17,10 +17,10 @@ class CreatePeminjamanTable extends Migration
             $table->increments('id');
             $table->string('acara');
             $table->string('ruang');
-            $table->string('barang');
-            $table->string('barang_tersedia');
-            $table->string('jumlah_pinjam');
-            $table->string('jumlah_request');
+            // $table->string('barang');
+            // $table->string('barang_tersedia');
+            // $table->string('jumlah_pinjam');
+            // $table->string('jumlah_request');
             $table->string('tanggal');
             $table->string('waktu_mulai');
             $table->string('waktu_selesai');

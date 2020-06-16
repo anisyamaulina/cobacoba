@@ -38,10 +38,10 @@
                      @csrf
                     
                         <div class="input-group">
-                            <input id="kode" type="text" class="input--style-3{{ $errors->has('kode') ? ' is-invalid' : '' }}" name="kode" value="{{ old('kode') }}" required autofocus placeholder="NAK">
-                            @if ($errors->has('kode'))
+                            <input id="email" type="email" class="input--style-3{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus placeholder="Email UGM">
+                            @if ($errors->has('email'))
                                 <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('kode') }}</strong>
+                                    <strong>{{ $errors->first('email') }}</strong>
                                 </span>
                             @endif
                         </div>

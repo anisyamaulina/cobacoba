@@ -64,7 +64,7 @@
 
               <div class="dropdown-menu dropdown">     
                 <a class="dropdown-item" href="{{ route('add') }}">Buat Peminjaman</a></br>
-                <a class="dropdown-item" href="{{ route('list') }}">Data Peminjaman</a></br>
+                <a class="dropdown-item" href="{{ route('data') }}">Data Peminjaman</a></br>
               </div>
               </li>
           <li><a href="{{Route('events')}}">Agenda</a></li>

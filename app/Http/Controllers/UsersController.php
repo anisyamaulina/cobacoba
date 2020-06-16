@@ -25,10 +25,11 @@ class UsersController extends Controller
     }
 
     public function update(Request $request)
-    {
+    {       
 	// update data users
 	DB::table('users')->where('id',$request->id)->update([
-		'name' => $request->name,
+        'name' => $request->name,
+        'foto' => $request->foto,
         'jabatan' => $request->jabatan,
         'fakultas' => $request->fakultas,
         'prodi' => $request->prodi,
@@ -38,7 +39,7 @@ class UsersController extends Controller
         'telepon' => $request->telepon,
         'email' => $request->email,
         'password' => $request->password
-		
+	
 	]);
 	// alihkan halaman ke halaman profil
 	return redirect('/profil');

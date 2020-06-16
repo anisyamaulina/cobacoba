@@ -45,15 +45,15 @@ Route::get('fasilitas', function () {
 
 Route::get('/addpeminjaman', 'PeminjamanController@add')->name('add');
 
-// Route::post('/peminjaman/update','PeminjamanController@update')->name('update');
-
 Route::post('/submit_peminjaman', 'PeminjamanController@submit_peminjaman')->name('submit_peminjaman');
 
 Route::post('/save', 'PeminjamanController@save')->name('save');
 
-Route::get('/data/{id}', 'PeminjamanController@index')->name('data');
+Route::get('/data', 'PeminjamanController@index')->name('data');
 
 Route::get('/editpeminjaman/{id}','PeminjamanController@edit')->name('editpeminjaman');
+
+Route::post('/peminjaman/update','PeminjamanController@update')->name('update');
 
 Route::get('/datapeminjaman/hapus/{id}', 'PeminjamanController@delete');
 

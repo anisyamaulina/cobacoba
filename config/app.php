@@ -163,7 +163,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         MaddHatter\LaravelFullcalendar\ServiceProvider::class,
-        
+       
         
 
         /*

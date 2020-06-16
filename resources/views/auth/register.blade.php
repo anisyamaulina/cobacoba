@@ -73,7 +73,8 @@
                             </div>
                         <div name="prodi" id="prodi"></div>
                         </div>
-                       
+
+                     
                         <div class="input-group">
                             <input id="kode" type="text" class="input--style-3{{ $errors->has('kode') ? ' is-invalid' : '' }}" name="kode" value="{{ old('kode') }}" required placeholder="NIU 6 Digit">
                             @if ($errors->has('kode'))
@@ -156,7 +157,11 @@
     <!-- Main JS-->
     <script src="assets_user_register/js/global.js"></script>
 
-    <script>
+</body>
+
+</html>
+
+<script>
         $(document).ready(function(){
             $('#fakultas-select').change(function(){
                 var fakultas_id = $(this).val();
@@ -186,8 +191,4 @@
 
     </script>
 
-
-</body>
-
-</html>
 <!-- end document-->
