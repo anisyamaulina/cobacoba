@@ -85,8 +85,21 @@ class RegisterController extends Controller
             'alamat' => $data['alamat'],
             'telepon' => $data['telepon'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'password' => bcrypt($data['password']),
+            'token_register'=>str_random(190)
         ]);
+    }
+
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+        event(new Registered($user = $this->create($request->all())));
+
+        // $this->guard()->login($user);
+        // return $this->registered($request, $user)
+        //                 ?: redirect($this->redirectPath());
+
+        
     }
 
     public function index()

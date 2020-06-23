@@ -40,7 +40,14 @@ class PeminjamanController extends Controller
 
     public function index()
     {
-        $peminjaman = Peminjaman::all();
+        // dd(Auth::id());
+        // $peminjaman = DB::table('peminjaman')->where('id_user', $id)->get();
+
+        $peminjaman = Peminjaman::with('user','id')
+                    ->whereHas('id', function($q){
+                        $q->where('id_user', $id)->orderBy('created_at', 'ASC');
+                    }) 
+                    ->get();
 
         $barang = Barang::all();
         return view('datapeminjaman', ['peminjaman' => $peminjaman, 'barang' => $barang]);
